@@ -185,13 +185,14 @@ window.Quarto = {
   <li><a href="#概览" id="toc-概览" class="nav-link active" data-scroll-target="#概览"><span class="header-section-number">4.1</span> 概览</a></li>
   <li><a href="#理论基础" id="toc-理论基础" class="nav-link" data-scroll-target="#理论基础"><span class="header-section-number">4.2</span> 理论基础</a>
   <ul>
-  <li><a href="#因果推断的基石潜在结果s框架与随机化" id="toc-因果推断的基石潜在结果s框架与随机化" class="nav-link" data-scroll-target="#因果推断的基石潜在结果s框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果s框架与随机化</a></li>
+  <li><a href="#因果推断的基石潜在结果框架与随机化" id="toc-因果推断的基石潜在结果框架与随机化" class="nav-link" data-scroll-target="#因果推断的基石潜在结果框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果框架与随机化</a></li>
   <li><a href="#假说检验" id="toc-假说检验" class="nav-link" data-scroll-target="#假说检验"><span class="header-section-number">4.2.2</span> 假说检验</a></li>
   <li><a href="#统计功效与样本量计算" id="toc-统计功效与样本量计算" class="nav-link" data-scroll-target="#统计功效与样本量计算"><span class="header-section-number">4.2.3</span> 统计功效与样本量计算</a></li>
   <li><a href="#方差估计的挑战用户级随机化" id="toc-方差估计的挑战用户级随机化" class="nav-link" data-scroll-target="#方差估计的挑战用户级随机化"><span class="header-section-number">4.2.4</span> 方差估计的挑战（用户级随机化）</a></li>
   <li><a href="#多重检验问题multiple-testing-problem" id="toc-多重检验问题multiple-testing-problem" class="nav-link" data-scroll-target="#多重检验问题multiple-testing-problem"><span class="header-section-number">4.2.5</span> 多重检验问题（Multiple Testing Problem）</a></li>
-  <li><a href="#进阶统计视角" id="toc-进阶统计视角" class="nav-link" data-scroll-target="#进阶统计视角"><span class="header-section-number">4.2.6</span> 进阶统计视角</a></li>
+  <li><a href="#进阶统计视角待补充" id="toc-进阶统计视角待补充" class="nav-link" data-scroll-target="#进阶统计视角待补充"><span class="header-section-number">4.2.6</span> 进阶统计视角（待补充）</a></li>
   </ul></li>
+  <li><a href="#ab测试的流程与步骤" id="toc-ab测试的流程与步骤" class="nav-link" data-scroll-target="#ab测试的流程与步骤"><span class="header-section-number">4.3</span> AB测试的流程与步骤</a></li>
   </ul>
 </nav>
     </div>
@@ -224,8 +225,8 @@ window.Quarto = {
 </section>
 <section id="理论基础" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="理论基础"><span class="header-section-number">4.2</span> 理论基础</h2>
-<section id="因果推断的基石潜在结果s框架与随机化" class="level3" data-number="4.2.1">
-<h3 data-number="4.2.1" class="anchored" data-anchor-id="因果推断的基石潜在结果s框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果s框架与随机化</h3>
+<section id="因果推断的基石潜在结果框架与随机化" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="因果推断的基石潜在结果框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果框架与随机化</h3>
 <ol type="1">
 <li><p><strong>潜在结果框架（Neyman-Rubin Causal Model）：</strong></p>
 <ul>
@@ -266,6 +267,7 @@ window.Quarto = {
 <ol start="2" type="1">
 <li><strong>连续性指标：双样本</strong><span class="math inline">\(t\)</span><strong>检验</strong></li>
 </ol>
+<p>  例如平均订单金额、会话时长。</p>
 <ul>
 <li><p>假设：</p>
 <ul>
@@ -283,6 +285,7 @@ window.Quarto = {
 <ol start="3" type="1">
 <li><strong>比例型指标：双样本比例检验（</strong><span class="math inline">\(Z\)</span><strong>检验）</strong></li>
 </ol>
+<p>  例如点击率、转化率。</p>
 <ul>
 <li><p>假设：</p>
 <ul>
@@ -295,7 +298,8 @@ window.Quarto = {
 </ul>
 <p><span class="math display">\[Z = \frac{\hat{p}_B - \hat{p}_A}{\sqrt{\hat{p}(1-\hat{p}) (\frac{1}{n_A} + \frac{1}{n_B})}}\]</span>，这个版本不依赖与<span class="math inline">\(H_0\)</span>下<span class="math inline">\(p_A=p_B\)</span>的假设，在构建置信区间时更加自然，检验功效稍低但是更稳健。渐近分布同样是<span class="math inline">\(N(0, 1)\)</span>。</p>
 <ol start="4" type="1">
-<li><strong>置信区间（CI）</strong></li>
+<li><p><strong>计数型指标</strong>   例如人均点击次数。常假设服从泊松分布，使用基于泊松回归或负二项回归的检验（处理过离散问题）。</p></li>
+<li><p><strong>置信区间（CI）</strong></p></li>
 </ol>
 <ul>
 <li><p>概念：基于样本数据构造一个区间<span class="math inline">\((L, U)\)</span>，使得我们要估计的参数<span class="math inline">\(\theta\)</span>（我们这里是<span class="math inline">\(ATE\)</span>）落在这个区间的概率是<span class="math inline">\(1-\alpha\)</span>，即<span class="math inline">\(P(L\leq \theta \leq U) = 1-\alpha\)</span>。频率学派的解释是，重复多次试验，每次构造一个CI，那么大约<span class="math inline">\(1-\alpha\)</span>的CI会包含真实的<span class="math inline">\(\theta\)</span>。以下均以双尾检验为例。</p></li>
@@ -309,21 +313,109 @@ window.Quarto = {
 <ol type="1">
 <li>定义与公式</li>
 </ol>
+<ul>
+<li><p>I类错误（<span class="math inline">\(\alpha\)</span>）：<span class="math inline">\(H_0\)</span>为真时，错误地拒绝<span class="math inline">\(H_0\)</span>。也就是说宣称有差异实际没有。</p></li>
+<li><p>II类错误（<span class="math inline">\(\beta\)</span>）：<span class="math inline">\(H_1\)</span>为真时，没有拒绝<span class="math inline">\(H_0\)</span>。也就是说实际上有差异但是没有检测到。</p></li>
+<li><p>功效（Power）<span class="math inline">\(1-\beta\)</span>：<span class="math inline">\(P(\text{Reject } H₀ | H₁ \text{ is true})\)</span>。即当真实效应<span class="math inline">\(\delta = |ATE|\)</span>（或<span class="math inline">\(|\mu_B -\mu_A|\)</span>，<span class="math inline">\(|p_B - p_A|\)</span>）存在且等于最小期望检测效应（MDE）时，正确拒绝<span class="math inline">\(H_0\)</span>的概率。<strong>换句话说，就是当处理B确实比A好（</strong><span class="math inline">\(H_1\)</span>为真）时，正确拒绝<span class="math inline">\(H_0\)</span>的概率<span class="math inline">\(1-\beta\)</span>。</p></li>
+<li><p>影响功效的关键因素（以双样本<span class="math inline">\(t\)</span>检验为例）：</p>
+<ul>
+<li><p>效应量（<span class="math inline">\(\delta\)</span>）:期望检测到的最小有意义的差异<span class="math inline">\(\delta = \frac{|\mu_B - \mu_A|}{\sigma}\)</span>，这是标准化效应量，Cohen’sd。<span class="math inline">\(\delta\)</span>越大，功效越高，<span class="math inline">\(\delta\)</span>越小，检测所需要的样本量越大。</p></li>
+<li><p>样本量（<span class="math inline">\(n = n_A= n_B\)</span>）:<span class="math inline">\(n\)</span>越大，功效越高，功效<span class="math inline">\(\propto \sqrt{n}\)</span></p></li>
+<li><p>显著性水平（<span class="math inline">\(\alpha\)</span>）：犯I类错误（假阳性）的概率。<span class="math inline">\(\alpha\)</span>越大，即允许更多假阳性，功效越高。<span class="math inline">\(\alpha\)</span>越小，所需要样本量越大。</p></li>
+<li><p>方差（<span class="math inline">\(\sigma^2\)</span>）：<span class="math inline">\(\sigma^2\)</span>越大，功效越低。指标本身的变异性越大，检测相同效应量所需的样本量越大（对于连续型指标）。</p></li>
+<li><p>基准比率（p_A）：对于比例指标，基准转化率影响方差（p(1-p)），在p=0.5时最大。</p></li>
+</ul></li>
+<li><p>样本量计算公式（双样本<span class="math inline">\(t\)</span>检验，双尾，等样本量）：</p></li>
+</ul>
+<p><span class="math display">\[n \approx \frac{2 (Z_{1-\alpha/2} + Z_{1-\beta})^2 \sigma^2}{\delta^2}\]</span></p>
+<p>其中$ Z_{1-/2}, Z_{1-}<span class="math inline">\(是标准正态分布的分位数，\)</span><span class="math inline">\(是未标准化的效应量（\)</span>|_B-_A|<span class="math inline">\(）。这个公式推导基于\)</span>H_0<span class="math inline">\(下的统计量\)</span>N(0, 1)<span class="math inline">\(，\)</span>H_1<span class="math inline">\(下的统计量\)</span>N(, 1)<span class="math inline">\(，令两个分布的拒绝域边界相交即可解出\)</span>n$。</p>
+<ul>
+<li>比例型指标（双样本比例检验，双尾，等样本量）：</li>
+</ul>
+<p><span class="math display">\[n \approx \frac{ (Z_{1-\alpha/2} \sqrt{2\bar{p}(1-\bar{p})} + Z_{1-\beta} \sqrt{p_A(1-p_A) + p_B(1-p_B)} )² }{\delta²}\]</span> 其中<span class="math inline">\(\delta = |p_B-p_A|,\bar{p} = \frac{p_A+p_B}{2}\)</span>，推导类似，考虑<span class="math inline">\(H_0\)</span>下方差基于<span class="math inline">\(\bar{p}\)</span>，<span class="math inline">\(H1\)</span>下方差基于真实的<span class="math inline">\(p_A\)</span>和<span class="math inline">\(p_B\)</span>。</p>
 </section>
 <section id="方差估计的挑战用户级随机化" class="level3" data-number="4.2.4">
 <h3 data-number="4.2.4" class="anchored" data-anchor-id="方差估计的挑战用户级随机化"><span class="header-section-number">4.2.4</span> 方差估计的挑战（用户级随机化）</h3>
 <ul>
-<li>问题核心：</li>
+<li><p>问题核心：在用户级随机化的AB测试中，分析单元（如页面浏览PV，点击Click）与随机化单元（用户User）不一致。同一个用户的不同事件/行为不独立。</p></li>
+<li><p>后果：传统的方差估计公式（如<span class="math inline">\(\frac{s^2}{n}\)</span>）会严重低估真实方差，导致：</p>
+<ul>
+<li><p>CI过窄</p></li>
+<li><p><span class="math inline">\(p-value\)</span>过小，I类错误率（假阳性率）膨胀</p></li>
+</ul></li>
+<li><p>数学解释：</p>
+<ul>
+<li><p>假设有<span class="math inline">\(m\)</span>个用户<span class="math inline">\(i = 1...m\)</span>，用户<span class="math inline">\(i\)</span>贡献<span class="math inline">\(n_i\)</span>个观测值（如<span class="math inline">\(PV\)</span>），总观测值<span class="math inline">\(N = \sum_i n_i\)</span></p></li>
+<li><p>核心指标<span class="math inline">\(Y\)</span>在用户<span class="math inline">\(i\)</span>上的平均为<span class="math inline">\(\bar{Y}_i\)</span></p></li>
+<li><p>组件差异估计量<span class="math inline">\(\hat{\tau} = \bar{Y}_B - \bar{Y}_A\)</span></p></li>
+<li><p>其真实方差为：<span class="math inline">\(Var(\hat{τ}) = Var(\frac{1}{m_B} \sum_{i \in B} \bar{Y}_i - \frac{1}{m_A} \sum_{j \in A} \bar{Y}_j)\)</span>，由于用户间是独立的，<span class="math inline">\(Var(\hat{τ}) = \frac{Var(\bar{Y}_i | B)}{m_B} + \frac{Var(\bar{Y}_j | A)}{m_A}\)</span></p></li>
+<li><p>而传统方差估计（假设观测独立）为：<span class="math inline">\(\widehat{Var}_{naive}(\hat{τ}) \approx \frac{s_B²}{N_B} + \frac{s_A²}{N_A}\)</span>，其中<span class="math inline">\(N_B = \sum_{i \in B} n_i\)</span>（B组总观测数），<span class="math inline">\(s_B^2\)</span>是基于所有B组观测值计算的方差</p></li>
+<li><p><span class="math inline">\(\widehat{Var}_{naive}\)</span>会系统性小于<span class="math inline">\(Var(\hat{\tau})\)</span>，因为忽略了用户的内相关性。低估的程度取决于用户内相关性的强度和用户行为次数<span class="math inline">\(n_i\)</span>的变异度。</p></li>
+</ul></li>
+<li><p>解决方案：</p>
+<ul>
+<li><p><span class="math inline">\(Delta\)</span> <span class="math inline">\(Method\)</span>：推倒<span class="math inline">\(\hat{\tau}\)</span>方差的理论表达式并进行估计。适用于特定指标类型（如人均指标）。</p></li>
+<li><p>聚类标准误（Cluster-Robust Standard Errors - CRSE）：将方差估计建立在随机化单元（用户）的层面。</p>
+<ul>
+<li><p>将每一个用户视为一个“聚类”</p></li>
+<li><p>计算每个用户<span class="math inline">\(i\)</span>对<span class="math inline">\(\hat{\tau}\)</span>的“得分”（Influence Function）或残差贡献<span class="math inline">\(e_i\)</span></p></li>
+<li><p>聚类标准误为： <span class="math inline">\(\widehat{Var}_{CR}(\hat{τ}) = \frac{m}{m-1} \frac{m}{m_A m_B} \sum_{i=1}^m (\tilde{e}_i - \bar{\tilde{e}})^2\)</span>，其中<span class="math inline">\(\tilde{e}_i\)</span>是用户<span class="math inline">\(i\)</span>的聚合残差贡献（具体形式取决于模型）。这是最常用且稳健的方法。</p></li>
+</ul></li>
+<li><p>Booststrap（聚类Booststrap）：对用户进行重抽样（而不是对观测值），保持用户的所有数据完整。每次重抽样后计算<span class="math inline">\(\hat{\tau}\)</span>，用多次（B次）重抽样得到的<span class="math inline">\(\hat{\tau}^{(b)}\)</span>的方差来估计<span class="math inline">\(\hat{\tau}\)</span>。计算量大但是灵活。</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="多重检验问题multiple-testing-problem" class="level3" data-number="4.2.5">
 <h3 data-number="4.2.5" class="anchored" data-anchor-id="多重检验问题multiple-testing-problem"><span class="header-section-number">4.2.5</span> 多重检验问题（Multiple Testing Problem）</h3>
+<ul>
+<li><p>问题核心：同时进行<span class="math inline">\(K\)</span>次独立的假设检s验，每个检验的显著性水平都为<span class="math inline">\(\alpha\)</span>。那么至少出现一次假阳性（I类错误）的概率（族系错误率FWER,Family-Wise Error Rate）是<span class="math display">\[FWER = P(\text{至少一个错误拒绝} | \text{所有 } H₀ \text{ 为真}) = 1 - (1 - α)^K ≈ Kα \quad (\text{当 } α \text{ 很小时})\]</span>，即使<span class="math inline">\(\alpha = 0.05\)</span>，当<span class="math inline">\(K\)</span>为10时，FWER约为0.4，假阳性率非常高。</p></li>
+<li><p>ABTest中的来源：</p>
+<ul>
+<li><p>同时测试多个核心指标（<span class="math inline">\(K&gt;1\)</span>）</p></li>
+<li><p>同时测试多个变体（A/B/C/D…测试，<span class="math inline">\(K&gt;1\)</span>个比较）</p></li>
+<li><p>数据窥探（Peeking）：在实验运行期间多次查看结果并进行检验。每次查看都是一次独立的检验机会（<span class="math inline">\(K\)</span>很大）。</p></li>
+</ul></li>
+<li><p>控制方法（待补充）</p></li>
+</ul>
 </section>
-<section id="进阶统计视角" class="level3" data-number="4.2.6">
-<h3 data-number="4.2.6" class="anchored" data-anchor-id="进阶统计视角"><span class="header-section-number">4.2.6</span> 进阶统计视角</h3>
+<section id="进阶统计视角待补充" class="level3" data-number="4.2.6">
+<h3 data-number="4.2.6" class="anchored" data-anchor-id="进阶统计视角待补充"><span class="header-section-number">4.2.6</span> 进阶统计视角（待补充）</h3>
+<p>  AB测试的统计学原理深植于<strong>因果推断</strong>的潜在结果框架，<strong>随机化</strong>是其无偏估计的基石。<strong>假设检验 (t/Z检验)</strong>提供决策依据，<strong>置信区间</strong>量化不确定性。<strong>功效分析</strong>确保实验可靠性，<strong>样本量计算</strong>是实验设计的核心。实践中必须警惕<strong>方差低估 (用户级相关性)</strong> 和<strong>多重检验膨胀</strong>，采用聚类标准误或校正方法。贝叶斯方法和序贯检验提供了替代视角和效率提升。理解异质性效应能挖掘更深价值。掌握这些原理，是设计和解读可靠AB测试的关键。</p>
+</section>
+</section>
+<section id="ab测试的流程与步骤" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="ab测试的流程与步骤"><span class="header-section-number">4.3</span> AB测试的流程与步骤</h2>
+<p>  ABtest其实就是控制变量法。为了评估测试和验证模型/项目的效果，在app/pc端设计出多个版本，在同一时间维度下，分别用组成相同/相似的群组去随机访问这些版本，记录下群组的用户体验数据和业务数据，最后评估不同方案的效果决定是否上线。</p>
+<ol type="1">
+<li><strong>明确目标与假设</strong></li>
+</ol>
+<ul>
+<li><p>定义清晰的业务目标（如提升注册转化率、增加平均订单价值）。</p></li>
+<li><p>提出具体的、可证伪的统计假设（<span class="math inline">\(H_0\)</span>和<span class="math inline">\(H_1\)</span>）。</p></li>
+<li><p>确定期望检测的最小有意义效应量MDE</p></li>
+</ul>
+<ol start="2" type="1">
+<li><strong>确定目标指标与护栏指标</strong></li>
+</ol>
+<ul>
+<li><strong>核心指标（Primary Metrics）：</strong>直接反映实验目标的1-2个关键指标（如转化率、收入）
+<ul>
+<li><p>例如：修改购买页面的主色调能够帮助用户购买率提升3%</p></li>
+<li><p>那么用户购买率就是我们关注的</p></li>
+<li><p>还需要关注一些新策略是否会对其他重要指标产生负面影响</p></li>
+</ul></li>
+<li><strong>护栏指标（Guardrail Metrics）：</strong>监控实验潜在负面影响的指标（如页面加载时间、关键功能使用率、崩溃率）。确保优化核心指标不以牺牲其他重要方面为代价。
+<ul>
+<li><p>Organization Guardrail Metrics：新功能可能好但是加载慢；该付款界面UI对用户的下单单价不能有影响</p></li>
+<li><p>Trustworthy-related metrics：比如检查randomization，要用T-test或者卡方检验在查看A/B组的其他特征一致性</p></li>
+</ul></li>
+<li><strong>探索性指标（Exploratory Metrics）</strong>：帮助理解用户行为变化，发现意外结果的辅助指标。</li>
+</ul>
+<ol start="3" type="1">
+<li><strong>实验设计</strong></li>
+</ol>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
