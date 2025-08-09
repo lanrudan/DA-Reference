@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "Data"
+  author: "FURao"
+  date: "2025/8/5"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - summary.qmd
+    - 01metrics.qmd
+    - 02ABTest.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - cosmo
+      - brand
+    toc-depth: 6
+    toc-expand: 2
+    link-citations: true
+  pdf:
+    documentclass: scrreprt
+
+editor: visual
+
