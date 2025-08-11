@@ -229,6 +229,7 @@ window.Quarto = {
   <li><a href="#方差估计的挑战用户级随机化" id="toc-方差估计的挑战用户级随机化" class="nav-link" data-scroll-target="#方差估计的挑战用户级随机化"><span class="header-section-number">4.2.4</span> 方差估计的挑战（用户级随机化）</a></li>
   <li><a href="#多重检验问题multiple-testing-problem" id="toc-多重检验问题multiple-testing-problem" class="nav-link" data-scroll-target="#多重检验问题multiple-testing-problem"><span class="header-section-number">4.2.5</span> 多重检验问题（Multiple Testing Problem）</a></li>
   <li><a href="#进阶统计视角待补充" id="toc-进阶统计视角待补充" class="nav-link" data-scroll-target="#进阶统计视角待补充"><span class="header-section-number">4.2.6</span> 进阶统计视角（待补充）</a></li>
+  <li><a href="#哈希算法" id="toc-哈希算法" class="nav-link" data-scroll-target="#哈希算法"><span class="header-section-number">4.2.7</span> 哈希算法</a></li>
   </ul></li>
   <li><a href="#ab测试的流程与步骤" id="toc-ab测试的流程与步骤" class="nav-link" data-scroll-target="#ab测试的流程与步骤"><span class="header-section-number">4.3</span> <strong>AB测试的流程与步骤</strong></a>
   <ul>
@@ -257,7 +258,13 @@ window.Quarto = {
   <li><a href="#序贯检验sequential-testing" id="toc-序贯检验sequential-testing" class="nav-link" data-scroll-target="#序贯检验sequential-testing"><span class="header-section-number">4.4.14</span> 序贯检验（Sequential Testing）</a></li>
   <li><a href="#abn-tesing-多臂老虎机multi-armed-bandit---mab" id="toc-abn-tesing-多臂老虎机multi-armed-bandit---mab" class="nav-link" data-scroll-target="#abn-tesing-多臂老虎机multi-armed-bandit---mab"><span class="header-section-number">4.4.15</span> A/B/n Tesing &amp; 多臂老虎机（Multi-armed Bandit - MAB）</a></li>
   </ul></li>
-  <li><a href="#aa实验" id="toc-aa实验" class="nav-link" data-scroll-target="#aa实验"><span class="header-section-number">4.5</span> <strong>AA实验</strong></a></li>
+  <li><a href="#aa实验" id="toc-aa实验" class="nav-link" data-scroll-target="#aa实验"><span class="header-section-number">4.5</span> <strong>AA实验</strong></a>
+  <ul>
+  <li><a href="#aa测试的统计学原理" id="toc-aa测试的统计学原理" class="nav-link" data-scroll-target="#aa测试的统计学原理"><span class="header-section-number">4.5.1</span> AA测试的统计学原理</a></li>
+  <li><a href="#业务落地的实施框架" id="toc-业务落地的实施框架" class="nav-link" data-scroll-target="#业务落地的实施框架"><span class="header-section-number">4.5.2</span> 业务落地的实施框架</a></li>
+  <li><a href="#业务场景实战案例" id="toc-业务场景实战案例" class="nav-link" data-scroll-target="#业务场景实战案例"><span class="header-section-number">4.5.3</span> 业务场景实战案例</a></li>
+  <li><a href="#高级业务应用模式" id="toc-高级业务应用模式" class="nav-link" data-scroll-target="#高级业务应用模式"><span class="header-section-number">4.5.4</span> 高级业务应用模式</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -446,6 +453,146 @@ window.Quarto = {
 <section id="进阶统计视角待补充" class="level3" data-number="4.2.6">
 <h3 data-number="4.2.6" class="anchored" data-anchor-id="进阶统计视角待补充"><span class="header-section-number">4.2.6</span> 进阶统计视角（待补充）</h3>
 <p>  AB测试的统计学原理深植于<strong>因果推断</strong>的潜在结果框架，<strong>随机化</strong>是其无偏估计的基石。<strong>假设检验 (t/Z检验)</strong>提供决策依据，<strong>置信区间</strong>量化不确定性。<strong>功效分析</strong>确保实验可靠性，<strong>样本量计算</strong>是实验设计的核心。实践中必须警惕<strong>方差低估 (用户级相关性)</strong> 和<strong>多重检验膨胀</strong>，采用聚类标准误或校正方法。贝叶斯方法和序贯检验提供了替代视角和效率提升。理解异质性效应能挖掘更深价值。掌握这些原理，是设计和解读可靠AB测试的关键。</p>
+</section>
+<section id="哈希算法" class="level3" data-number="4.2.7">
+<h3 data-number="4.2.7" class="anchored" data-anchor-id="哈希算法"><span class="header-section-number">4.2.7</span> 哈希算法</h3>
+<p><strong>数学本质</strong> ：单向函数映射：<span class="math inline">\(h: \{0,1\}^* \rightarrow \{0,1\}^n\)</span></p>
+<ul>
+<li><p>输入：任意长度的数据（用户ID，设备ID）</p></li>
+<li><p>输出：固定长度摘要（128-256位）</p></li>
+<li><p>核心特征：</p>
+<ul>
+<li><p>确定性：相同输入 <span class="math inline">\(\rightarrow\)</span> 相同输出</p></li>
+<li><p>雪崩效应：1bit变化 <span class="math inline">\(\rightarrow\)</span> &gt;50%输出位变化</p></li>
+<li><p>抗碰撞性：极难找到不同输入同输出</p></li>
+</ul></li>
+</ul>
+<p><strong>业务视角的哈希过程</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[用户ID] --&gt; B(哈希函数)
+    B --&gt; C[256位哈希值]
+    C --&gt; D{取模运算}
+    D --&gt; E[分组编号]
+    E --&gt; F[实验分组]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p><strong>AB测试中的关键哈希算法</strong></p>
+<ul>
+<li>经典算法对比</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">算法</th>
+<th style="text-align: left;">输出长度</th>
+<th style="text-align: left;">业务适用场景</th>
+<th style="text-align: left;">性能（1M操作/秒）</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">MD5</td>
+<td style="text-align: left;">128位</td>
+<td style="text-align: left;">淘汰中（安全风险）</td>
+<td style="text-align: left;">550</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">SHA-1</td>
+<td style="text-align: left;">160位</td>
+<td style="text-align: left;">兼容旧系统</td>
+<td style="text-align: left;">450</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>SHA-256</strong></td>
+<td style="text-align: left;">256位</td>
+<td style="text-align: left;"><strong>主流AB测试平台</strong></td>
+<td style="text-align: left;">220</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">MurmurHash3</td>
+<td style="text-align: left;">128位</td>
+<td style="text-align: left;">高性能实时分流</td>
+<td style="text-align: left;">850</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>分层哈希设计</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> hashlib</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> assign_group(user_id: <span class="bu">str</span>, </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>                salt: <span class="bu">str</span>, </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>                layers: <span class="bu">dict</span>) <span class="op">-&gt;</span> <span class="bu">dict</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    用户多实验层分配</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    :param user_id: 用户唯一标识</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    :param salt: 实验层盐值</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    :param layers: 实验层配置 </span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">        {层1: {分组数: 3}, 层2: {分组数: 2}}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    :return: {层1: 组A, 层2: 组B}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    assignments <span class="op">=</span> {}</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> layer_name, config <span class="kw">in</span> layers.items():</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 层专属盐值 = 全局盐值 + 层名</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        layer_salt <span class="op">=</span> salt <span class="op">+</span> layer_name</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 计算哈希摘要</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        hash_hex <span class="op">=</span> hashlib.sha256((user_id <span class="op">+</span> layer_salt).encode()).hexdigest()</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 转换为整数</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        hash_int <span class="op">=</span> <span class="bu">int</span>(hash_hex[:<span class="dv">16</span>], <span class="dv">16</span>)  <span class="co"># 取前16字符足够</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># 取模分组</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        group_idx <span class="op">=</span> hash_int <span class="op">%</span> config[<span class="st">'group_count'</span>]</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        assignments[layer_name] <span class="op">=</span> <span class="ss">f"组</span><span class="sc">{</span><span class="bu">chr</span>(<span class="dv">65</span><span class="op">+</span>group_idx)<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> assignments</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># 示例调用</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>user_group <span class="op">=</span> assign_group(</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>    user_id<span class="op">=</span><span class="st">"u_1234567"</span>,</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    salt<span class="op">=</span><span class="st">"2023Q3_EXP"</span>,</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    layers<span class="op">=</span>{</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="st">"UI改版层"</span>: {<span class="st">"group_count"</span>: <span class="dv">3</span>},</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"推荐算法层"</span>: {<span class="st">"group_count"</span>: <span class="dv">2</span>}</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(user_group)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>{'UI改版层': '组C', '推荐算法层': '组B'}</code></pre>
+</div>
+</div>
+<p><strong>业务场景应用详解</strong></p>
+<ul>
+<li>流量分桶机制</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[总流量] --&gt; B[桶1：0-999]
+    A --&gt; C[桶2：1000-1999]
+    A --&gt; D[...]
+    A --&gt; E[桶N：9000-9999]
+    
+    B --&gt;|10%| F[实验A对照组]
+    B --&gt;|15%| G[实验A策略组]
+    B --&gt;|5%| H[实验B测试组]
+    C --&gt; I[...]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 </section>
 </section>
 <section id="ab测试的流程与步骤" class="level2" data-number="4.3">
@@ -657,14 +804,14 @@ Note
 <li><p>代码（基于<span class="math inline">\(delta\)</span> <span class="math inline">\(method\)</span>）:<span class="math inline">\(\sqrt{n}(g(Y_n) - g(\theta)) \xrightarrow{d} N(0, \sigma^2 g'(\theta)^2)\)</span></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> MultiTaskLasso, Lasso</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> MultiTaskLasso, Lasso</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> MinMaxScaler</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>用卡方检验检验分流的均匀性</li>
@@ -675,13 +822,13 @@ Note
 <li><p>如果p-value非常小（比如小于0.05），说明两组的流量分布存在显著差异，可能分流有问题，实验结果不可信。</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> chi2_contingency</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chi_test(x,y,x_target,y_target):</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    kf_data <span class="op">=</span> np.array([[x,x_target], [y,y_target]])</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    kf <span class="op">=</span> chi2_contingency(kf_data)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'chi-sq=</span><span class="sc">%.4f</span><span class="st">, p-value=</span><span class="sc">%.4f</span><span class="st">, df=</span><span class="sc">%i</span><span class="st"> expected_frep=</span><span class="sc">%s</span><span class="st">'</span><span class="op">%</span>kf)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>chi_test(<span class="dv">31188</span>,<span class="dv">31188</span>,<span class="dv">3461</span>,<span class="dv">3423</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> chi2_contingency</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> chi_test(x,y,x_target,y_target):</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    kf_data <span class="op">=</span> np.array([[x,x_target], [y,y_target]])</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    kf <span class="op">=</span> chi2_contingency(kf_data)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'chi-sq=</span><span class="sc">%.4f</span><span class="st">, p-value=</span><span class="sc">%.4f</span><span class="st">, df=</span><span class="sc">%i</span><span class="st"> expected_frep=</span><span class="sc">%s</span><span class="st">'</span><span class="op">%</span>kf)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>chi_test(<span class="dv">31188</span>,<span class="dv">31188</span>,<span class="dv">3461</span>,<span class="dv">3423</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>chi-sq=0.1780, p-value=0.6731, df=1 expected_frep=[[31205.1115218  3443.8884782]
  [31170.8884782  3440.1115218]]</code></pre>
@@ -696,29 +843,29 @@ Note
 <li><p>推导：假设我们需要计算<span class="math inline">\(R = Y/X\)</span>的方差。通过一阶泰勒展开近似，得到<span class="math inline">\(Var(\hat{R}) = Var\left(\frac{\bar{Y}}{\bar{X}}\right) \approx \left(\frac{\partial g}{\partial x}\right)^2 Var(\bar{X}) + \left(\frac{\partial g}{\partial y}\right)^2 Var(\bar{Y}) + 2\left(\frac{\partial g}{\partial x}\right)\left(\frac{\partial g}{\partial y}\right)Cov(\bar{X}, \bar{Y})\)</span>，其中<span class="math inline">\(g(x,y) = \frac{y}{x},  \frac{\partial g}{\partial x} = -\frac{y}{x^2}, \frac{\partial g}{\partial y} = \frac{1}{x}\)</span>，代入得到<span class="math inline">\(\Rightarrow Var(\hat{R}) \approx \frac{E[Y]^2}{E[X]^4} Var(\bar{X}) + \frac{1}{E[X]^2} Var(\bar{Y}) - \frac{2E[Y]}{E[X]^3} Cov(\bar{X}, \bar{Y})\)</span></p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> var_dtm(y_mean, x_mean, var_y, var_x, xy_mean):</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#计算协方差</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cova(x_mean,y_mean,xy_mean):</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xy_mean<span class="op">-</span>x_mean<span class="op">*</span>y_mean</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    covar <span class="op">=</span> cova(x_mean,y_mean,xy_mean)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#商的variance</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    var_ratio <span class="op">=</span> var_y<span class="op">/</span>x_mean<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> var_x<span class="op">*</span>y_mean<span class="op">**</span><span class="dv">2</span><span class="op">/</span>x_mean<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>covar<span class="op">*</span>y_mean<span class="op">/</span>x_mean<span class="op">**</span><span class="dv">3</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> var_ratio</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">#发布器头图的 曝光数 &gt; 发布数 为例</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> var_dtm(y_mean <span class="op">=</span> <span class="fl">0.035214194</span>, x_mean <span class="op">=</span> <span class="fl">2.794877088302219</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>                ,var_y <span class="op">=</span> <span class="fl">0.073726526</span>, var_x <span class="op">=</span> <span class="fl">185.240175</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>                    , xy_mean <span class="op">=</span> <span class="fl">0.410843231521</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co">#实际的方差 有可能比二项分布折算方差会大很多</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'二项方差：'</span>,<span class="bu">round</span>(<span class="fl">0.012599</span><span class="op">/</span>(<span class="dv">1</span><span class="op">-</span><span class="fl">0.012599</span>),<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> var_dtm(y_mean, x_mean, var_y, var_x, xy_mean):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">#计算协方差</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> cova(x_mean,y_mean,xy_mean):</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> xy_mean<span class="op">-</span>x_mean<span class="op">*</span>y_mean</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    covar <span class="op">=</span> cova(x_mean,y_mean,xy_mean)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">#商的variance</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    var_ratio <span class="op">=</span> var_y<span class="op">/</span>x_mean<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> var_x<span class="op">*</span>y_mean<span class="op">**</span><span class="dv">2</span><span class="op">/</span>x_mean<span class="op">**</span><span class="dv">4</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>covar<span class="op">*</span>y_mean<span class="op">/</span>x_mean<span class="op">**</span><span class="dv">3</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> var_ratio</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#发布器头图的 曝光数 &gt; 发布数 为例</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>var <span class="op">=</span> var_dtm(y_mean <span class="op">=</span> <span class="fl">0.035214194</span>, x_mean <span class="op">=</span> <span class="fl">2.794877088302219</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                ,var_y <span class="op">=</span> <span class="fl">0.073726526</span>, var_x <span class="op">=</span> <span class="fl">185.240175</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                    , xy_mean <span class="op">=</span> <span class="fl">0.410843231521</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#实际的方差 有可能比二项分布折算方差会大很多</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'二项方差：'</span>,<span class="bu">round</span>(<span class="fl">0.012599</span><span class="op">/</span>(<span class="dv">1</span><span class="op">-</span><span class="fl">0.012599</span>),<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>二项方差： 0.0128</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'实际方差：'</span>,<span class="bu">round</span>(var,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'实际方差：'</span>,<span class="bu">round</span>(var,<span class="dv">4</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>实际方差： 0.0122</code></pre>
 </div>
@@ -727,26 +874,26 @@ Note
 <li>估算样本量</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co">mean:对照组指标的均值（如基准转化率）</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co">var：指标的方差，代码在调用时会分别使用“二项分布方差”和“德尔塔方法方差”。</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="co">lift_rate：预期的最小可检测效应</span><span class="er">\</span><span class="co">delta</span></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">mean:对照组指标的均值（如基准转化率）</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co">var：指标的方差，代码在调用时会分别使用“二项分布方差”和“德尔塔方法方差”。</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co">lift_rate：预期的最小可检测效应</span><span class="er">\</span><span class="co">delta</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="co">'''</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'\nmean:对照组指标的均值（如基准转化率）\nvar：指标的方差，代码在调用时会分别使用“二项分布方差”和“德尔塔方法方差”。\nlift_rate：预期的最小可检测效应\\delta\n'</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_size(mean <span class="op">=</span> <span class="fl">0.01259955</span>,var <span class="op">=</span> <span class="fl">0.0122</span>,lift_rate <span class="op">=</span> <span class="fl">0.025</span>,alpha <span class="op">=</span> <span class="fl">0.05</span>,beta <span class="op">=</span> <span class="fl">0.2</span>):</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    lift <span class="op">=</span> lift_rate <span class="op">*</span> mean</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> var<span class="op">*</span>(scipy.stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alpha)<span class="op">+</span>scipy.stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>beta))<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(lift<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.ceil(num)</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'采用二项方差的样本量估计：'</span>, sample_size(var <span class="op">=</span> <span class="fl">0.0128</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sample_size(mean <span class="op">=</span> <span class="fl">0.01259955</span>,var <span class="op">=</span> <span class="fl">0.0122</span>,lift_rate <span class="op">=</span> <span class="fl">0.025</span>,alpha <span class="op">=</span> <span class="fl">0.05</span>,beta <span class="op">=</span> <span class="fl">0.2</span>):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="im">import</span> math</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    lift <span class="op">=</span> lift_rate <span class="op">*</span> mean</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    num <span class="op">=</span> var<span class="op">*</span>(scipy.stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>alpha)<span class="op">+</span>scipy.stats.norm.ppf(<span class="dv">1</span><span class="op">-</span>beta))<span class="op">**</span><span class="dv">2</span><span class="op">/</span>(lift<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.ceil(num)</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'采用二项方差的样本量估计：'</span>, sample_size(var <span class="op">=</span> <span class="fl">0.0128</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>采用二项方差的样本量估计： 797606</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'采用deltaMethod的样本量估计：'</span>,sample_size())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'采用deltaMethod的样本量估计：'</span>,sample_size())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>采用deltaMethod的样本量估计： 760218</code></pre>
 </div>
@@ -980,12 +1127,12 @@ Note
 <li><p>数据分析阶段</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjust_novelty_effect(data):</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 剔除前3天的新奇效应数据</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    adjusted_data <span class="op">=</span> data[data[<span class="st">'day'</span>] <span class="op">&gt;</span> <span class="dv">3</span>] </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算首因效应修正因子 (基于老用户衰减曲线)</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    primacy_factor <span class="op">=</span> fit_decay_curve(old_user_data)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> adjusted_data <span class="op">*</span> primacy_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjust_novelty_effect(data):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 剔除前3天的新奇效应数据</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    adjusted_data <span class="op">=</span> data[data[<span class="st">'day'</span>] <span class="op">&gt;</span> <span class="dv">3</span>] </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算首因效应修正因子 (基于老用户衰减曲线)</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    primacy_factor <span class="op">=</span> fit_decay_curve(old_user_data)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> adjusted_data <span class="op">*</span> primacy_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><p>决策阶段：</p>
@@ -1160,28 +1307,28 @@ Note
 <li>效应计算</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义各组转化率</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>blue_square <span class="op">=</span> <span class="fl">0.052</span></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>blue_circle <span class="op">=</span> <span class="fl">0.061</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>red_square <span class="op">=</span> <span class="fl">0.058</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>red_circle <span class="op">=</span> <span class="fl">0.075</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算主效应和交互效应</span></span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>color_effect <span class="op">=</span> ((red_square <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> blue_circle)) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>shape_effect <span class="op">=</span> ((blue_circle <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> red_square)) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>interaction <span class="op">=</span> ((red_circle <span class="op">-</span> red_square) <span class="op">-</span> (blue_circle <span class="op">-</span> blue_square)) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"颜色主效应: </span><span class="sc">{</span>color_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义各组转化率</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>blue_square <span class="op">=</span> <span class="fl">0.052</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>blue_circle <span class="op">=</span> <span class="fl">0.061</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>red_square <span class="op">=</span> <span class="fl">0.058</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>red_circle <span class="op">=</span> <span class="fl">0.075</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算主效应和交互效应</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>color_effect <span class="op">=</span> ((red_square <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> blue_circle)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>shape_effect <span class="op">=</span> ((blue_circle <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> red_square)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>interaction <span class="op">=</span> ((red_circle <span class="op">-</span> red_square) <span class="op">-</span> (blue_circle <span class="op">-</span> blue_square)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"颜色主效应: </span><span class="sc">{</span>color_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>颜色主效应: 0.0100</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"形状主效应: </span><span class="sc">{</span>shape_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0130</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"形状主效应: </span><span class="sc">{</span>shape_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0130</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>形状主效应: 0.0130</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"交互效应: </span><span class="sc">{</span>interaction<span class="sc">:.4f}</span><span class="ss">"</span>)       <span class="co"># 0.0040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"交互效应: </span><span class="sc">{</span>interaction<span class="sc">:.4f}</span><span class="ss">"</span>)       <span class="co"># 0.0040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>交互效应: 0.0040</code></pre>
 </div>
@@ -1232,22 +1379,22 @@ Note
 </ul></li>
 <li><p>实验平台支持：</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FactorialExperiment:</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, factors):</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.factors <span class="op">=</span> factors  <span class="co"># 如 {'颜色': ['蓝','红'], '形状': ['方','圆']}</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.groups <span class="op">=</span> <span class="va">self</span>._generate_groups()</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _generate_groups(<span class="va">self</span>):</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""生成所有因子组合"""</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> itertools <span class="im">import</span> product</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">list</span>(product(<span class="op">*</span><span class="va">self</span>.factors.values()))</span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> assign_user(<span class="va">self</span>, user_id):</span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""分配用户到特定组合"""</span></span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        hash_val <span class="op">=</span> <span class="bu">hash</span>(user_id) <span class="op">%</span> <span class="dv">100</span></span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        group_size <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> <span class="bu">len</span>(<span class="va">self</span>.groups)</span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        group_idx <span class="op">=</span> <span class="bu">int</span>(hash_val <span class="op">//</span> group_size)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.groups[group_idx]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FactorialExperiment:</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, factors):</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.factors <span class="op">=</span> factors  <span class="co"># 如 {'颜色': ['蓝','红'], '形状': ['方','圆']}</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.groups <span class="op">=</span> <span class="va">self</span>._generate_groups()</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _generate_groups(<span class="va">self</span>):</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""生成所有因子组合"""</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">list</span>(product(<span class="op">*</span><span class="va">self</span>.factors.values()))</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> assign_user(<span class="va">self</span>, user_id):</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""分配用户到特定组合"""</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>        hash_val <span class="op">=</span> <span class="bu">hash</span>(user_id) <span class="op">%</span> <span class="dv">100</span></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>        group_size <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> <span class="bu">len</span>(<span class="va">self</span>.groups)</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>        group_idx <span class="op">=</span> <span class="bu">int</span>(hash_val <span class="op">//</span> group_size)</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.groups[group_idx]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul></li>
 <li><p><strong>黄金法则</strong>：当实验策略影响用户的同一决策时刻或同一认知维度时，必须使用因子设计而非正交分层。</p></li>
@@ -1353,20 +1500,20 @@ Note
 <li><p>使用序贯检验或贝叶斯方法处理peeking</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 序贯检验</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O'Brien-Fleming边界示例</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> obrien_fleming_bound(alpha, t, T):</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" t:当前信息分数, T:计划总信息量 """</span></span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span> <span class="op">-</span> alpha<span class="op">/</span><span class="dv">2</span>)</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="op">*</span> np.sqrt(T <span class="op">/</span> t)</span>
-<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 第50%进度时边界：z*√2 ≈ 1.414z (比固定检验更严格)</span></span>
-<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 贝叶斯方法</span></span>
-<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> should_stop(prior, data_A, data_B):</span>
-<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> update_posterior(prior, data_A, data_B)</span>
-<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    prob_better <span class="op">=</span> (posterior[<span class="st">'B'</span>] <span class="op">&gt;</span> posterior[<span class="st">'A'</span>]).mean()</span>
-<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prob_better <span class="op">&gt;</span> <span class="fl">0.95</span> <span class="kw">or</span> prob_better <span class="op">&lt;</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 序贯检验</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># O'Brien-Fleming边界示例</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> obrien_fleming_bound(alpha, t, T):</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" t:当前信息分数, T:计划总信息量 """</span></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    z <span class="op">=</span> stats.norm.ppf(<span class="dv">1</span> <span class="op">-</span> alpha<span class="op">/</span><span class="dv">2</span>)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> z <span class="op">*</span> np.sqrt(T <span class="op">/</span> t)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># 第50%进度时边界：z*√2 ≈ 1.414z (比固定检验更严格)</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 贝叶斯方法</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> should_stop(prior, data_A, data_B):</span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a>    posterior <span class="op">=</span> update_posterior(prior, data_A, data_B)</span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a>    prob_better <span class="op">=</span> (posterior[<span class="st">'B'</span>] <span class="op">&gt;</span> posterior[<span class="st">'A'</span>]).mean()</span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> prob_better <span class="op">&gt;</span> <span class="fl">0.95</span> <span class="kw">or</span> prob_better <span class="op">&lt;</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>对结果进行多重检验校正</li>
@@ -1462,8 +1609,259 @@ Note
 </section>
 <section id="aa实验" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="aa实验"><span class="header-section-number">4.5</span> <strong>AA实验</strong></h2>
+<p>  AA测试（A/A Test）是实验系统中的”校准工具”，指在<strong>相同策略</strong>下将用户随机分为两个或多个组进行比较，确保实验系统本身的可靠性。</p>
+<p>  为什么业务必须做AA测试？</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[业务决策依赖AB测试] --&gt; B{实验系统可信吗？}
+    B --&gt;|AA测试通过| C[可靠决策]
+    B --&gt;|AA测试失败| D[错误决策链]
+    D --&gt; E[上线无效方案]
+    D --&gt; F[放弃有效方案]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>  作用有哪些呢？</p>
+<ul>
+<li><p>实验平台验证：检测分流系统是否真的随机</p></li>
+<li><p>指标敏感性校准：确定业务指标的天然波动范围</p></li>
+<li><p>统计方法检验：验证分析模型是否产生假阳性</p></li>
+<li><p>数据管道审计：发现埋点采集或者ETL处理错误</p></li>
+<li><p>案例：某电商平台AA测试发现“凌晨用户转化率虚高3%”，根源是因为爬虫浏览量未过滤</p></li>
+</ul>
+<section id="aa测试的统计学原理" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="aa测试的统计学原理"><span class="header-section-number">4.5.1</span> AA测试的统计学原理</h3>
+<p><strong>假说检验</strong></p>
+<ul>
+<li><p><span class="math inline">\(H_0\)</span>：对照组A2与实验组A1没有差异</p></li>
+<li><p><span class="math inline">\(H_1\)</span>：A1与A2存在显著差异</p></li>
+<li><p>在理想系统中：<span class="math inline">\(P(\text{拒绝}H_0 | H_0\text{为真}) \leq \alpha \quad (\alpha=0.05)\)</span></p></li>
+</ul>
+<p><strong>判定三要素</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 37%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">维度</th>
+<th style="text-align: left;">健康标准</th>
+<th style="text-align: left;">检测方法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">样本比例</td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2\)</span>检验<span class="math inline">\(p&gt;0.05\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\chi^2=\sum\frac{(O-E)^2}{E}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">核心指标</td>
+<td style="text-align: left;">t检验<span class="math inline">\(p&gt;0.05\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(t = \frac{\bar{Y}{A1} - \bar{Y}{A2}}{s_p\sqrt{2/n}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">用户特征分布</td>
+<td style="text-align: left;">KL散度&lt;0.05</td>
+<td style="text-align: left;"><span class="math inline">\(D_{KL}(P_{A1}\parallel P_{A2})\)</span></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="业务落地的实施框架" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="业务落地的实施框架"><span class="header-section-number">4.5.2</span> 业务落地的实施框架</h3>
+<p><strong>执行频率策略</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>业务阶段</th>
+<th>频率</th>
+<th>样本量</th>
+<th>特别关注</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>新实验平台上线</td>
+<td>连续20次</td>
+<td>10万用户/组</td>
+<td>分流算法一致性</td>
+</tr>
+<tr class="even">
+<td>常规运营期</td>
+<td>每月一次</td>
+<td>业务日均UV的20%</td>
+<td>指标波动基线</td>
+</tr>
+<tr class="odd">
+<td>重大升级后</td>
+<td>立即执行</td>
+<td>等同AB测试规模</td>
+<td>数据管道完整性</td>
+</tr>
+</tbody>
+</table>
+<p><strong>典型业务场景配置</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> AATestConfig:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, business_type):</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.metrics <span class="op">=</span> <span class="va">self</span>._get_core_metrics(business_type)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.duration <span class="op">=</span> <span class="va">self</span>._calculate_duration()</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> _get_core_metrics(<span class="va">self</span>, business_type):</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 不同业务的核心监控指标</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    config <span class="op">=</span> {</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>      <span class="st">"ecommerce"</span>: [<span class="st">"转化率"</span>, <span class="st">"客单价"</span>, <span class="st">"加购率"</span>],</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>      <span class="st">"fintech"</span>: [<span class="st">"申请通过率"</span>, <span class="st">"坏账率"</span>, <span class="st">"放款时效"</span>],</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>      <span class="st">"content"</span>: [<span class="st">"CTR"</span>, <span class="st">"观看时长"</span>, <span class="st">"分享率"</span>]</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> config.get(business_type, [<span class="st">"DAU"</span>])</span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> _calculate_duration(<span class="va">self</span>):</span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>    <span class="co">""" 覆盖完整业务周期 """</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    base_days <span class="op">=</span> <span class="dv">7</span>  <span class="co"># 至少1周</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"fintech"</span> <span class="kw">in</span> <span class="va">self</span>.metrics:</span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="bu">max</span>(base_days, <span class="dv">30</span>)  <span class="co"># 金融需完整账期</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> base_days</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>实施流程图解</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TB
+    S[启动AA测试] --&gt; A{样本比例健康？&lt;br&gt;χ² p&gt;0.05}
+    A --&gt;|否| B[警报：分流故障]
+    A --&gt;|是| C{核心指标差异？&lt;br&gt;t检验 p&gt;0.05}
+    C --&gt;|否| D[警报：指标异常]
+    C --&gt;|是| E{用户特征均衡？&lt;br&gt;KL&lt;0.05}
+    E --&gt;|否| F[警报：样本污染]
+    E --&gt;|是| G[系统认证通过]
+    s red fill:#ffe6e6,stroke:#ff6666;
+    classDef green fill:#e6ffe6,stroke:#66cc66;
+    class B,D,F red
+    class G green
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+</section>
+<section id="业务场景实战案例" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="业务场景实战案例"><span class="header-section-number">4.5.3</span> 业务场景实战案例</h3>
+<p><strong>案例1：金融风控系统AA测试失败</strong></p>
+<ul>
+<li><p>背景：某消费贷平台AB测试结果波动异常</p></li>
+<li><p>AA测试发现</p>
+<ul>
+<li><p>申请通过率差异p=0.03（预期应无差异）</p></li>
+<li><p>用户年龄分布KL=0.18（显著不均衡）</p></li>
+</ul></li>
+<li><p>根因定位</p></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[分流不均] --&gt; B[用户ID哈希冲突]
+    B --&gt; C[年轻用户集中到A组]
+    C --&gt; D[通过率虚高]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li><p>解决方案</p>
+<ul>
+<li><p>将哈希算法从MD5迁移至SHA-256</p></li>
+<li><p>增加bucket数量至1000（原本是100）</p></li>
+<li><p>添加年龄维度均衡检查</p></li>
+</ul></li>
+</ul>
+<p><strong>案例2：视频平台指标波动基线建立</strong></p>
+<ul>
+<li><p>业务需求：判断+1%观看时长提升是否显著</p></li>
+<li><p>AA测试输出：<span class="math inline">\(\sigma_{\text{时长}} = 0.8\% \quad (\text{95%波动区间} [-1.6\%, +1.6\%])\)</span></p></li>
+<li><p>决策规则</p>
+<ul>
+<li><p>提升&lt;1.6%，可能为自然波动</p></li>
+<li><p>提升&gt;1.6%，可判定为显著效果</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="高级业务应用模式" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="高级业务应用模式"><span class="header-section-number">4.5.4</span> 高级业务应用模式</h3>
+<p><strong>多维度AA测试矩阵</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>维度</th>
+<th>检测目标</th>
+<th>业务意义</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>时间切片</td>
+<td>周末vs工作日波动</td>
+<td>活动效果评估参考</td>
+</tr>
+<tr class="even">
+<td>地理维度</td>
+<td>区域间天然差异</td>
+<td>地域策略实验校准</td>
+</tr>
+<tr class="odd">
+<td>用户分层</td>
+<td>新老用户行为基线</td>
+<td>个性化策略实验基础</td>
+</tr>
+<tr class="even">
+<td>设备类型</td>
+<td>ios/Android差异</td>
+<td>跨平台实验可比性保障</td>
+</tr>
+</tbody>
+</table>
+<p><strong>动态基线系统架构</strong></p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[实时数据流] --&gt; B{是否AA测试期}
+    B --&gt;|是| C[计算指标差异]
+    C --&gt; D[更新波动基线]
+    D --&gt; E[存储至基线库]
+    B --&gt;|否| F[对比当前AB测试与基线]
+    F --&gt; G{超出基线范围？}
+    G --&gt;|是| H[触发警报]
+    G --&gt;|否| I[正常输出结果]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
