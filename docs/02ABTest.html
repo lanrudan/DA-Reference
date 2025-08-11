@@ -104,6 +104,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -217,8 +220,8 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#概览" id="toc-概览" class="nav-link active" data-scroll-target="#概览"><span class="header-section-number">4.1</span> 概览</a></li>
-  <li><a href="#理论基础" id="toc-理论基础" class="nav-link" data-scroll-target="#理论基础"><span class="header-section-number">4.2</span> 理论基础</a>
+  <li><a href="#概览" id="toc-概览" class="nav-link active" data-scroll-target="#概览"><span class="header-section-number">4.1</span> <strong>概览</strong></a></li>
+  <li><a href="#理论基础" id="toc-理论基础" class="nav-link" data-scroll-target="#理论基础"><span class="header-section-number">4.2</span> <strong>理论基础</strong></a>
   <ul>
   <li><a href="#因果推断的基石潜在结果框架与随机化" id="toc-因果推断的基石潜在结果框架与随机化" class="nav-link" data-scroll-target="#因果推断的基石潜在结果框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果框架与随机化</a></li>
   <li><a href="#假说检验" id="toc-假说检验" class="nav-link" data-scroll-target="#假说检验"><span class="header-section-number">4.2.2</span> 假说检验</a></li>
@@ -227,14 +230,29 @@ window.Quarto = {
   <li><a href="#多重检验问题multiple-testing-problem" id="toc-多重检验问题multiple-testing-problem" class="nav-link" data-scroll-target="#多重检验问题multiple-testing-problem"><span class="header-section-number">4.2.5</span> 多重检验问题（Multiple Testing Problem）</a></li>
   <li><a href="#进阶统计视角待补充" id="toc-进阶统计视角待补充" class="nav-link" data-scroll-target="#进阶统计视角待补充"><span class="header-section-number">4.2.6</span> 进阶统计视角（待补充）</a></li>
   </ul></li>
-  <li><a href="#ab测试的流程与步骤" id="toc-ab测试的流程与步骤" class="nav-link" data-scroll-target="#ab测试的流程与步骤"><span class="header-section-number">4.3</span> AB测试的流程与步骤</a>
+  <li><a href="#ab测试的流程与步骤" id="toc-ab测试的流程与步骤" class="nav-link" data-scroll-target="#ab测试的流程与步骤"><span class="header-section-number">4.3</span> <strong>AB测试的流程与步骤</strong></a>
   <ul>
-  <li><a href="#明确目标与假设" id="toc-明确目标与假设" class="nav-link" data-scroll-target="#明确目标与假设"><span class="header-section-number">4.3.1</span> 1.<strong>明确目标与假设</strong></a></li>
-  <li><a href="#确定目标指标与护栏指标" id="toc-确定目标指标与护栏指标" class="nav-link" data-scroll-target="#确定目标指标与护栏指标"><span class="header-section-number">4.3.2</span> 2.<strong>确定目标指标与护栏指标</strong></a></li>
-  <li><a href="#实验设计" id="toc-实验设计" class="nav-link" data-scroll-target="#实验设计"><span class="header-section-number">4.3.3</span> 3.<strong>实验设计</strong></a></li>
+  <li><a href="#明确目标与假设" id="toc-明确目标与假设" class="nav-link" data-scroll-target="#明确目标与假设"><span class="header-section-number">4.3.1</span> 1.明确目标与假设</a></li>
+  <li><a href="#确定目标指标与护栏指标" id="toc-确定目标指标与护栏指标" class="nav-link" data-scroll-target="#确定目标指标与护栏指标"><span class="header-section-number">4.3.2</span> 2.确定目标指标与护栏指标</a></li>
+  <li><a href="#实验设计" id="toc-实验设计" class="nav-link" data-scroll-target="#实验设计"><span class="header-section-number">4.3.3</span> 3.实验设计</a></li>
   <li><a href="#实施与随机化数据收集与监控" id="toc-实施与随机化数据收集与监控" class="nav-link" data-scroll-target="#实施与随机化数据收集与监控"><span class="header-section-number">4.3.4</span> 4.实施与随机化，数据收集与监控</a></li>
   <li><a href="#数据分析" id="toc-数据分析" class="nav-link" data-scroll-target="#数据分析"><span class="header-section-number">4.3.5</span> 5.数据分析</a></li>
   <li><a href="#决策" id="toc-决策" class="nav-link" data-scroll-target="#决策"><span class="header-section-number">4.3.6</span> 6.决策</a></li>
+  </ul></li>
+  <li><a href="#挑战与陷阱" id="toc-挑战与陷阱" class="nav-link" data-scroll-target="#挑战与陷阱"><span class="header-section-number">4.4</span> <strong>挑战与陷阱</strong></a>
+  <ul>
+  <li><a href="#新奇效应novelty-effect首因效应primacy-effect" id="toc-新奇效应novelty-effect首因效应primacy-effect" class="nav-link" data-scroll-target="#新奇效应novelty-effect首因效应primacy-effect"><span class="header-section-number">4.4.1</span> 新奇效应（Novelty Effect）/首因效应（Primacy Effect）</a></li>
+  <li><a href="#样本比例不平衡sample-ratio-mismatch---srm" id="toc-样本比例不平衡sample-ratio-mismatch---srm" class="nav-link" data-scroll-target="#样本比例不平衡sample-ratio-mismatch---srm"><span class="header-section-number">4.4.2</span> 样本比例不平衡（Sample Ratio Mismatch - SRM）</a></li>
+  <li><a href="#辛普森悖论simpsons-paradox" id="toc-辛普森悖论simpsons-paradox" class="nav-link" data-scroll-target="#辛普森悖论simpsons-paradox"><span class="header-section-number">4.4.3</span> 辛普森悖论（Simpson’s Paradox）</a></li>
+  <li><a href="#相关实验的相互影响" id="toc-相关实验的相互影响" class="nav-link" data-scroll-target="#相关实验的相互影响"><span class="header-section-number">4.4.4</span> 相关实验的相互影响</a></li>
+  <li><a href="#稀释效应dilution-effect" id="toc-稀释效应dilution-effect" class="nav-link" data-scroll-target="#稀释效应dilution-effect"><span class="header-section-number">4.4.5</span> 稀释效应（Dilution Effect）</a></li>
+  <li><a href="#干扰网络效应interferencenetwork-effects" id="toc-干扰网络效应interferencenetwork-effects" class="nav-link" data-scroll-target="#干扰网络效应interferencenetwork-effects"><span class="header-section-number">4.4.6</span> 干扰/网络效应（Interference/Network Effects）</a></li>
+  <li><a href="#多重检验问题multiple-testing-problem-1" id="toc-多重检验问题multiple-testing-problem-1" class="nav-link" data-scroll-target="#多重检验问题multiple-testing-problem-1"><span class="header-section-number">4.4.7</span> 多重检验问题（Multiple Testing Problem）</a></li>
+  <li><a href="#长期效应long-term-effects" id="toc-长期效应long-term-effects" class="nav-link" data-scroll-target="#长期效应long-term-effects"><span class="header-section-number">4.4.8</span> 长期效应（Long-term Effects）</a></li>
+  <li><a href="#方差估计问题" id="toc-方差估计问题" class="nav-link" data-scroll-target="#方差估计问题"><span class="header-section-number">4.4.9</span> 方差估计问题</a></li>
+  <li><a href="#贝叶斯ab测试bayesian-ab-testing" id="toc-贝叶斯ab测试bayesian-ab-testing" class="nav-link" data-scroll-target="#贝叶斯ab测试bayesian-ab-testing"><span class="header-section-number">4.4.10</span> 贝叶斯AB测试（Bayesian AB Testing）</a></li>
+  <li><a href="#序贯检验sequential-testing" id="toc-序贯检验sequential-testing" class="nav-link" data-scroll-target="#序贯检验sequential-testing"><span class="header-section-number">4.4.11</span> 序贯检验（Sequential Testing）</a></li>
+  <li><a href="#abn-tesing-多臂老虎机multi-armed-bandit---mab" id="toc-abn-tesing-多臂老虎机multi-armed-bandit---mab" class="nav-link" data-scroll-target="#abn-tesing-多臂老虎机multi-armed-bandit---mab"><span class="header-section-number">4.4.12</span> A/B/n Tesing &amp; 多臂老虎机（Multi-armed Bandit - MAB）</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -262,12 +280,12 @@ window.Quarto = {
 
 
 <section id="概览" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="概览"><span class="header-section-number">4.1</span> 概览</h2>
+<h2 data-number="4.1" class="anchored" data-anchor-id="概览"><span class="header-section-number">4.1</span> <strong>概览</strong></h2>
 <p>  本章介绍AB测试。<strong>AB测试</strong>（也称为随机对照试验 - RCT, Randomized Controlled Trial）是一种用于因果推断的实验设计方法。其核心在于通过<strong>随机分配</strong>将受试单元（用户、会话、页面访问等）分配到不同的处理组（通常是A：对照组/Baseline，B：新方案组），在控制其他变量（通过随机化）的前提下，比较不同处理对特定目标指标的影响，从而决定哪个更优。</p>
 <p>  本章参考了@knuth84</p>
 </section>
 <section id="理论基础" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="理论基础"><span class="header-section-number">4.2</span> 理论基础</h2>
+<h2 data-number="4.2" class="anchored" data-anchor-id="理论基础"><span class="header-section-number">4.2</span> <strong>理论基础</strong></h2>
 <section id="因果推断的基石潜在结果框架与随机化" class="level3" data-number="4.2.1">
 <h3 data-number="4.2.1" class="anchored" data-anchor-id="因果推断的基石潜在结果框架与随机化"><span class="header-section-number">4.2.1</span> 因果推断的基石：潜在结果框架与随机化</h3>
 <ol type="1">
@@ -427,10 +445,10 @@ window.Quarto = {
 </section>
 </section>
 <section id="ab测试的流程与步骤" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="ab测试的流程与步骤"><span class="header-section-number">4.3</span> AB测试的流程与步骤</h2>
+<h2 data-number="4.3" class="anchored" data-anchor-id="ab测试的流程与步骤"><span class="header-section-number">4.3</span> <strong>AB测试的流程与步骤</strong></h2>
 <p>  ABtest其实就是控制变量法。为了评估测试和验证模型/项目的效果，在app/pc端设计出多个版本，在同一时间维度下，分别用组成相同/相似的群组去随机访问这些版本，记录下群组的用户体验数据和业务数据，最后评估不同方案的效果决定是否上线。</p>
 <section id="明确目标与假设" class="level3" data-number="4.3.1">
-<h3 data-number="4.3.1" class="anchored" data-anchor-id="明确目标与假设"><span class="header-section-number">4.3.1</span> 1.<strong>明确目标与假设</strong></h3>
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="明确目标与假设"><span class="header-section-number">4.3.1</span> 1.明确目标与假设</h3>
 <ul>
 <li><p>定义清晰的业务目标（如提升注册转化率、增加平均订单价值）。</p></li>
 <li><p>提出具体的、可证伪的统计假设（<span class="math inline">\(H_0\)</span>和<span class="math inline">\(H_1\)</span>）。</p></li>
@@ -438,7 +456,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="确定目标指标与护栏指标" class="level3" data-number="4.3.2">
-<h3 data-number="4.3.2" class="anchored" data-anchor-id="确定目标指标与护栏指标"><span class="header-section-number">4.3.2</span> 2.<strong>确定目标指标与护栏指标</strong></h3>
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="确定目标指标与护栏指标"><span class="header-section-number">4.3.2</span> 2.确定目标指标与护栏指标</h3>
 <ul>
 <li><strong>核心指标（Primary Metrics）：</strong>直接反映实验目标的1-2个关键指标（如转化率、收入）
 <ul>
@@ -455,7 +473,7 @@ window.Quarto = {
 </ul>
 </section>
 <section id="实验设计" class="level3" data-number="4.3.3">
-<h3 data-number="4.3.3" class="anchored" data-anchor-id="实验设计"><span class="header-section-number">4.3.3</span> 3.<strong>实验设计</strong></h3>
+<h3 data-number="4.3.3" class="anchored" data-anchor-id="实验设计"><span class="header-section-number">4.3.3</span> 3.实验设计</h3>
 <ul>
 <li><p>单元选择（Unit of Diversion/randomization Unit）：决定随机化的最小单元（用户ID，设备ID，会话ID，页面访问）。选择时需要考虑指标计算（用户级指标需用户级分流）、用户多次体验（保持体验一致性）、样本独立性（避免干扰）。用户级分流最常见。</p></li>
 <li><p>分流比例（Traffic Allocation）：分配多少样本去A/B组。通常是50:50，这样统计效率最高。但也会根据风险、流量大小调整（如90:10，新方案流量少）。需要确保样本量足够。</p></li>
@@ -763,6 +781,123 @@ Note
 <li><p>AA测试/平衡检验：在分析AB结果之前，先检查实验组（A）和对照组（A）在<strong>已知不受实验影响</strong>的指标上（如实验前历史数据、用户属性、分流前行为）是否存在显著差异。若显著，表明随机化可能失败或者数据有问题，需要排查。</p></li>
 <li><p>效应估计：计算核心指标的组间差异<span class="math inline">\(\bar{y}_B-\bar{y}_A\)</span>或者<span class="math inline">\(\hat{p}_B-\hat{p}_A\)</span></p></li>
 <li><p>统计显著性差异：使用合适的检验方法（t检验、Z检验、回归）计算P值</p></li>
+</ul>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+<col style="width: 24%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">指标类型</th>
+<th style="text-align: left;">检验方法</th>
+<th style="text-align: left;">公式</th>
+<th style="text-align: left;">适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>连续型指标</strong><br>(人均时长、客单价)</td>
+<td style="text-align: left;"><strong>双样本t检验</strong></td>
+<td style="text-align: left;"><span class="math inline">\(t = \frac{\bar{Y}_A - \bar{Y}_B}{\sqrt{\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B}}}\)</span><br><span class="math inline">\(df \approx \frac{(\frac{s_A^2}{n_A} + \frac{s_B^2}{n_B})^2}{\frac{(\frac{s_A^2}{n_A})^2}{n_A-1} + \frac{(\frac{s_B^2}{n_B})^2}{n_B-1}}\)</span></td>
+<td style="text-align: left;">收入、时长等平滑分布数据</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>比例型指标</strong><br>(转化率、点击率)</td>
+<td style="text-align: left;"><strong>双样本Z检验</strong></td>
+<td style="text-align: left;"><span class="math inline">\(Z = \frac{\hat{p}_A - \hat{p}_B}{\sqrt{\hat{p}(1-\hat{p})(\frac{1}{n_A} + \frac{1}{n_B})}}\)</span><br><span class="math inline">\(\hat{p} = \frac{X_A + X_B}{n_A + n_B}\)</span></td>
+<td style="text-align: left;">转化率、留存率等二分类数据</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>计数型指标</strong><br>(人均点击次数)</td>
+<td style="text-align: left;"><strong>负二项回归</strong><br>(处理过离散)</td>
+<td style="text-align: left;"><span class="math inline">\(\log(\mu_i) = \beta_0 + \beta_1 \cdot \text{Treatment}_i\)</span><br><span class="math inline">\(\text{Var}(Y_i) = \mu_i + \alpha\mu_i^2\)</span></td>
+<td style="text-align: left;">用户行为次数（方差&gt;均值）</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：为什么转化率、点击率是二分类的数据？</p>
+<p>A：然我们常把转化率、点击率表述为百分比（如5.2%），但它们的底层数据本质是二分类数据（Binary Data）。原因在于构成这些指标的每一个最小观察单元只有两种互斥状态：</p>
+<ul>
+<li><p>点击率CTR点击次数/曝光次数：点击记录为1，不点击记录为0</p></li>
+<li><p>转化率CVR注册次数/进入落地页人数：注册记录为1，不点击记录为0</p></li>
+<li><p>二分类数据违背连续型检验的核心假设：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>假设</th>
+<th>连续型变量</th>
+<th>二分类数据</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>数据分布</td>
+<td>近似正态分布</td>
+<td>Bournulli分布（0-1分布）</td>
+</tr>
+<tr class="even">
+<td>方差稳定性</td>
+<td>方差与均值无关</td>
+<td>方差依赖均值$p(1-p)$</td>
+</tr>
+<tr class="odd">
+<td>数值范围</td>
+<td>无边界限制</td>
+<td>数值被压缩在[0,1]</td>
+</tr>
+</tbody>
+</table></li>
+<li><p>案例：广告点击率AB测试 (A组 vs B组)</p>
+<ul>
+<li><p>A组：曝光 10,000 次 → 点击 600 次 → <span class="math inline">\(\hat{p}_A = 0.06\)</span></p></li>
+<li><p>B组：曝光 10,000 次 → 点击 750 次 → <span class="math inline">\(\hat{p}_B = 0.075\)</span></p></li>
+<li><p>若错误使用t检验：</p>
+<ul>
+<li><p>计算两组的点击率（0.06vs0.075）的t统计量，得出p&lt;0.05</p></li>
+<li><p>问题：忽略数据的本质是离散二分类，且方差p(1-p)在p=0.5时最大，导致检验失真</p></li>
+</ul></li>
+<li><p>正确使用Z检验：</p>
+<ul>
+<li><p><span class="math inline">\(Z = \frac{\hat{p}_B - \hat{p}_A}{\sqrt{\hat{p}(1-\hat{p}) \left( \frac{1}{n_A} + \frac{1}{n_B} \right)}}, \quad \hat{p} = \frac{600+750}{10000+10000} = 0.0675\)</span></p></li>
+<li><p>得到Z=5.0,p&lt;0.000，结论可靠</p></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：什么时候可以近似使用t检验？</p>
+<p>A：当同时满足以下两个条件时，二分类数据近似生态分布，可以谨慎使用t检验</p>
+<ul>
+<li><p>样本量足够大：<span class="math inline">\(n \cdot p &gt;5\)</span>且<span class="math inline">\(c\cdot(1-p)&gt;5\)</span></p></li>
+<li><p>比例值远离边界：<span class="math inline">\(0.2&lt;p&lt;0.8\)</span>，避免p接近0或1导致分布高度偏态</p></li>
+</ul>
+<p>当然，互联网场景中，转化率等常不满足，严格使用比例检验或逻辑回归。</p>
+</div>
+</div>
+<ul>
 <li><p>CI构建：计算效应量的CI</p></li>
 <li><p>多重检验校正：如果同时考虑多个核心指标或者同一个指标的多个变体（A/B/n测试），需要进行校正，以控制整体错误发现率（FDR）或族系错误率（FWER）。容易忽视但是很重要！</p></li>
 <li><p>效应量解读：结合实际业务解读统计学差异是否显著。一个统计学上显著但是效应量微小的结果可能没有实际意义。</p></li>
@@ -770,6 +905,410 @@ Note
 </section>
 <section id="决策" class="level3" data-number="4.3.6">
 <h3 data-number="4.3.6" class="anchored" data-anchor-id="决策"><span class="header-section-number">4.3.6</span> 6.决策</h3>
+<ul>
+<li><p>显著且正向：发布B方案</p></li>
+<li><p>显著但负向：放弃B，分析原因</p></li>
+<li><p>不显著：</p>
+<ul>
+<li><p>检查功效：样本量是否足够？效应量是否小于MDE？</p></li>
+<li><p>检查实验设计：随机化是否有效？指标定义是否合理？触发逻辑是否正确？</p></li>
+<li><p>结论：在当前条件下，未检测到B方案与A方案有统计显著差异。这<strong>不</strong>等于证明两者效果相同（可能是II类错误）。</p></li>
+</ul></li>
+<li><p>考虑结果在实际流量下的稳健性（如网络效应、长期效应）</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：如果你发现你在AB测试当中所选取的指标在<strong>统计上来说都是不显著的</strong>，你该怎么去判断这个实验的收益？</p>
+<p>A：</p>
+<ul>
+<li><p>在当前条件下，未检测到B方案与A方案有统计显著差异。这<strong>不</strong>等于证明两者效果相同（可能是II类错误）</p></li>
+<li><p>但进一步，我们可以将这个指标去拆分成每一天去观察，如果指标的变化曲线每一天实验组都高于对照组，即使他在统计上来说是不显著的，我们也认为在这一个观测周期内，实验组的关键指标表现是优于对照组，并得出优化上线的结论。</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：如果你在AB测试中发现<strong>实验组核心指标明显优于对照组</strong>，那这个优化就一定能够上线吗？</p>
+<p>A：</p>
+<ul>
+<li><p>不一定。举个例子，比如说有的时候我们想要提升产品的视觉展现效果。但是这种优化可能是以用户等待内容展现的时间作为代价来进行提升的。所以一个方面的优化可能会导致另一个方面的劣化。在做这个优化的时候，可能会对其他部门产生一些负向的影响，进而导致公司收入的下降。</p></li>
+<li><p>所以，我们在进行AB测试的时候，必须要综合评估所有方面的一些指标变动，同时对于收益和损失来做一个评估，才能确认这个优化可以最终上线。</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="挑战与陷阱" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="挑战与陷阱"><span class="header-section-number">4.4</span> <strong>挑战与陷阱</strong></h2>
+<p>  其实常见的错误总得来说就是两类，一类是弃真，一类是存伪。</p>
+<p>  <strong>弃真</strong>是指实验组和对照组没有显著差异，但是我们接受了新方案。减少这种错误的方法就是提高显著性水平<span class="math inline">\(\alpha\)</span>，比如p小于0.05才算显著，而不是选用0.1   <strong>存伪</strong>是指实验组和对照组有显著差异，但是我们没有接受新方案。这是第II类错误。</p>
+<section id="新奇效应novelty-effect首因效应primacy-effect" class="level3" data-number="4.4.1">
+<h3 data-number="4.4.1" class="anchored" data-anchor-id="新奇效应novelty-effect首因效应primacy-effect"><span class="header-section-number">4.4.1</span> 新奇效应（Novelty Effect）/首因效应（Primacy Effect）</h3>
+<p>  用户对新方案B的暂时性好奇或抵触导致行为短期偏离长期趋势。</p>
+<p><strong>量化公式</strong></p>
+<ul>
+<li><p><strong>首因效应强度</strong> = <span class="math inline">\(\frac{\text{老用户实验组留存率} - \text{老用户对照组留存率}}{\text{新用户实验组留存率} - \text{新用户对照组留存率}}\)</span> （比值&gt;1.3表示显著存在）</p></li>
+<li><p><strong>新奇效应衰减率</strong> = <span class="math inline">\(1 - \frac{\text{实验组第7日DAU}}{\text{实验组第2日DAU}}\)</span> （衰减率&gt;40%需警惕）</p></li>
+</ul>
+<p>解决方案：延长实验时间观察指标是否稳定；考虑仅对新用户实验</p>
+<ul>
+<li><p>实验设计阶段</p>
+<ul>
+<li><p>将用户分为 <strong>认知锚点人群</strong>（老用户）和 <strong>无锚点人群</strong>（新用户）</p></li>
+<li><p>对新用户设置 <strong>学习期</strong>（前3天数据仅监控不分析）</p></li>
+</ul></li>
+<li><p>数据分析阶段</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adjust_novelty_effect(data):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 剔除前3天的新奇效应数据</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    adjusted_data <span class="op">=</span> data[data[<span class="st">'day'</span>] <span class="op">&gt;</span> <span class="dv">3</span>] </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 计算首因效应修正因子 (基于老用户衰减曲线)</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    primacy_factor <span class="op">=</span> fit_decay_curve(old_user_data)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> adjusted_data <span class="op">*</span> primacy_factor</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>决策阶段：</p>
+<ul>
+<li><p>若首因效应主导，需教育用户（如添加新功能引导教程）</p></li>
+<li><p>若新奇效应主导，关注长期留存曲线（看第30天留存率）</p></li>
+<li><p>例如：“当实验组在第4周留存率比对照组高5%，即使首周数据差也值得发布”</p></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：对于一个新功能实施了ABtest，发现新功能效果 更好，但是一周之后效果迅速下降。</p>
+<p>A：新奇效应，效果消失后重复使用减少</p>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="样本比例不平衡sample-ratio-mismatch---srm" class="level3" data-number="4.4.2">
+<h3 data-number="4.4.2" class="anchored" data-anchor-id="样本比例不平衡sample-ratio-mismatch---srm"><span class="header-section-number">4.4.2</span> 样本比例不平衡（Sample Ratio Mismatch - SRM）</h3>
+<p>  实际分配的人数比例与设计比例（例如50:50）存在显著偏差。严重！</p>
+<p>可能的原因：</p>
+<ul>
+<li><p>随机化算法bug</p></li>
+<li><p>数据管道问题</p></li>
+<li><p>用户重复计数</p></li>
+<li><p>实验配置错误</p></li>
+</ul>
+<p>错误的例子：</p>
+<ul>
+<li><p>实验中，在不同渠道/应用市场中，发布不同版本的APP/页面，并把用户数据进行对比</p></li>
+<li><p>简单地从总体流量中抽取n%用于实验，不考虑流量分布，不做分流处理</p></li>
+</ul>
+<p>  不同应用市场渠道的用户常常带有自己的典型特征，用户分布具有明显区别。对总流量进行简单粗暴地抽样也有着同样的问题——分流到实验组和对照组的流量可能存在很大的分布差异。</p>
+<p>  AB测试要求我们尽可能地保持实验组和对照组的流量分布一致，与总流量也需分布一致，否则得出的实验数据不具有可信度。</p>
+<p>  <strong>必须解决SRM才能分析结果！</strong></p>
+</section>
+<section id="辛普森悖论simpsons-paradox" class="level3" data-number="4.4.3">
+<h3 data-number="4.4.3" class="anchored" data-anchor-id="辛普森悖论simpsons-paradox"><span class="header-section-number">4.4.3</span> 辛普森悖论（Simpson’s Paradox）</h3>
+<p>  在子群体中观察到的趋势与合并数据中的趋势相反。</p>
+</section>
+<section id="相关实验的相互影响" class="level3" data-number="4.4.4">
+<h3 data-number="4.4.4" class="anchored" data-anchor-id="相关实验的相互影响"><span class="header-section-number">4.4.4</span> 相关实验的相互影响</h3>
+<p>  前面有讲到，相关性实验放到同一层，不相关的实验可以放在不同层。比如按钮红色or蓝色VS按钮圆形or方形是相关的实验，用户将收到“按钮颜色Red”以及“按钮形状Round”两个策略的影响。</p>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    U[用户] --&gt;|同时经历| E1[颜色实验]
+    U --&gt;|同时经历| E2[形状实验]
+    E1 --&gt;|红色/蓝色| D[点击行为]
+    E2 --&gt;|圆形/方形| D
+    D --&gt;|混杂结果| R[无法区分影响因素]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<p>  这样我们就无法判断究竟是哪个策略影响了该用户的行为。换句话说，由于两个实验存在关联，用户重复被实验命中，实验结果实际收到了多个策略的影响。这种情况下，两个实验的结果便不再可信了。</p>
+<ul>
+<li>传统正交分层（适合不相关实验）</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>用户ID</th>
+<th>层1: 按钮颜色</th>
+<th>层2: 推荐算法</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1001</td>
+<td>蓝色</td>
+<td>算法A</td>
+</tr>
+<tr class="even">
+<td>1002</td>
+<td>红色</td>
+<td>算法B</td>
+</tr>
+<tr class="odd">
+<td>1003</td>
+<td>蓝色</td>
+<td>算法A</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>因子设计（2×2实验，解决相关问题）</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>用户ID</th>
+<th>颜色+形状组合</th>
+<th>效果评估</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1001</td>
+<td>蓝色 + 方形</td>
+<td>转化率X%</td>
+</tr>
+<tr class="even">
+<td>1002</td>
+<td>蓝色 + 圆形</td>
+<td>转化率Y%</td>
+</tr>
+<tr class="odd">
+<td>1003</td>
+<td>红色 + 方形</td>
+<td>转化率Z%</td>
+</tr>
+<tr class="even">
+<td>1004</td>
+<td>红色 + 圆形</td>
+<td>转化率W%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>数据分析结果：</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>组合方案</th>
+<th>用户数</th>
+<th>转化率</th>
+<th>平均订单额</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>蓝色方形</td>
+<td>10000</td>
+<td>5.2%</td>
+<td>$128</td>
+</tr>
+<tr class="even">
+<td>蓝色圆形</td>
+<td>10000</td>
+<td>6.1%</td>
+<td>$135</td>
+</tr>
+<tr class="odd">
+<td>红色方形</td>
+<td>10000</td>
+<td>5.8%</td>
+<td>$132</td>
+</tr>
+<tr class="even">
+<td>红色圆形</td>
+<td>10000</td>
+<td>7.5%</td>
+<td>$145</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>效应计算</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义各组转化率</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>blue_square <span class="op">=</span> <span class="fl">0.052</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>blue_circle <span class="op">=</span> <span class="fl">0.061</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>red_square <span class="op">=</span> <span class="fl">0.058</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>red_circle <span class="op">=</span> <span class="fl">0.075</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 计算主效应和交互效应</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>color_effect <span class="op">=</span> ((red_square <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> blue_circle)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>shape_effect <span class="op">=</span> ((blue_circle <span class="op">+</span> red_circle) <span class="op">-</span> (blue_square <span class="op">+</span> red_square)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>interaction <span class="op">=</span> ((red_circle <span class="op">-</span> red_square) <span class="op">-</span> (blue_circle <span class="op">-</span> blue_square)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"颜色主效应: </span><span class="sc">{</span>color_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0100</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>颜色主效应: 0.0100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"形状主效应: </span><span class="sc">{</span>shape_effect<span class="sc">:.4f}</span><span class="ss">"</span>)    <span class="co"># 0.0130</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>形状主效应: 0.0130</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"交互效应: </span><span class="sc">{</span>interaction<span class="sc">:.4f}</span><span class="ss">"</span>)       <span class="co"># 0.0040</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>交互效应: 0.0040</code></pre>
+</div>
+</div>
+<ul>
+<li>适用场景</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>场景类型</th>
+<th>案例</th>
+<th>推荐设计</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>UI元素交互</td>
+<td>按钮形状+颜色+文案</td>
+<td>2*2*2因子设计</td>
+</tr>
+<tr class="even">
+<td>定价策略组合</td>
+<td>基础价+折扣+运费策略</td>
+<td>三因子混合设计</td>
+</tr>
+<tr class="odd">
+<td>产品功能叠加</td>
+<td>搜索+筛选+排序功能优化</td>
+<td>分阶段因子设计</td>
+</tr>
+<tr class="even">
+<td>营销组合策略</td>
+<td>渠道+文案+优惠券类型</td>
+<td>正交分层+因子设计</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>实施注意事项：</p>
+<ul>
+<li><p>四组实验需要四倍于单实验的样本量</p></li>
+<li><p>正交互效应是策略相互增强，负交互效应是策略相互抵消</p></li>
+<li><p>业务优先级：</p>
+<ul>
+<li><p>当交互效应&gt;主效应时，必须采用组合策略</p></li>
+<li><p>当主效应&gt;&gt;交互效应时，可以独立优化</p></li>
+</ul></li>
+<li><p>实验平台支持：</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> FactorialExperiment:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, factors):</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.factors <span class="op">=</span> factors  <span class="co"># 如 {'颜色': ['蓝','红'], '形状': ['方','圆']}</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.groups <span class="op">=</span> <span class="va">self</span>._generate_groups()</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> _generate_groups(<span class="va">self</span>):</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""生成所有因子组合"""</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>        <span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="bu">list</span>(product(<span class="op">*</span><span class="va">self</span>.factors.values()))</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> assign_user(<span class="va">self</span>, user_id):</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>        <span class="co">"""分配用户到特定组合"""</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>        hash_val <span class="op">=</span> <span class="bu">hash</span>(user_id) <span class="op">%</span> <span class="dv">100</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>        group_size <span class="op">=</span> <span class="dv">100</span> <span class="op">/</span> <span class="bu">len</span>(<span class="va">self</span>.groups)</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>        group_idx <span class="op">=</span> <span class="bu">int</span>(hash_val <span class="op">//</span> group_size)</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">self</span>.groups[group_idx]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></li>
+</ul></li>
+<li><p><strong>黄金法则</strong>：当实验策略影响用户的同一决策时刻或同一认知维度时，必须使用因子设计而非正交分层。</p></li>
+</ul>
+</section>
+<section id="稀释效应dilution-effect" class="level3" data-number="4.4.5">
+<h3 data-number="4.4.5" class="anchored" data-anchor-id="稀释效应dilution-effect"><span class="header-section-number">4.4.5</span> 稀释效应（Dilution Effect）</h3>
+<p>  指不符合实验触发条件的用户（如从未访问过实验页面的用户纳入分析），稀释了真实效应。</p>
+<p>解决方案：</p>
+<ul>
+<li>采用“仅曝光用户分析”或“触发用户分析”</li>
+</ul>
+</section>
+<section id="干扰网络效应interferencenetwork-effects" class="level3" data-number="4.4.6">
+<h3 data-number="4.4.6" class="anchored" data-anchor-id="干扰网络效应interferencenetwork-effects"><span class="header-section-number">4.4.6</span> 干扰/网络效应（Interference/Network Effects）</h3>
+<p>  一个用户的体验/行为收到其他用户所在组的影响（如社交功能）。违背了SUTVA（稳定单位处理值假设）。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>以更大粒度（群组/网络）随机化</p></li>
+<li><p>使用聚类标准误</p></li>
+<li><p>设计特殊实验</p></li>
+</ul>
+</section>
+<section id="多重检验问题multiple-testing-problem-1" class="level3" data-number="4.4.7">
+<h3 data-number="4.4.7" class="anchored" data-anchor-id="多重检验问题multiple-testing-problem-1"><span class="header-section-number">4.4.7</span> 多重检验问题（Multiple Testing Problem）</h3>
+<p>  同时检验多个假设或多次查看数据（peeking）会大大增加整体I类错误</p>
+<p>解决方案：</p>
+<ul>
+<li><p>预先指定核心假设</p></li>
+<li><p>使用序贯检验或贝叶斯方法处理peeking</p></li>
+<li><p>对结果进行多重检验校正</p></li>
+</ul>
+</section>
+<section id="长期效应long-term-effects" class="level3" data-number="4.4.8">
+<h3 data-number="4.4.8" class="anchored" data-anchor-id="长期效应long-term-effects"><span class="header-section-number">4.4.8</span> 长期效应（Long-term Effects）</h3>
+<p>  AB测试通常运行几天到几周，可能无法捕捉方案的长期影响（如用户疲劳、生态变化）。</p>
+<p>解决方案：</p>
+<ul>
+<li><p>结合长期跟踪研究</p></li>
+<li><p>使用“保留组”进行长期观察</p></li>
+</ul>
+</section>
+<section id="方差估计问题" class="level3" data-number="4.4.9">
+<h3 data-number="4.4.9" class="anchored" data-anchor-id="方差估计问题"><span class="header-section-number">4.4.9</span> 方差估计问题</h3>
+<p>  这一点在前面也有提到。用户级指标常常存在用户内行为相关性（非独立），导致传统方差估计低估。</p>
+<p>解决方法：使用Delta方法、自助法(Bootstrap)、或基于用户聚类的标准误（Cluster-Robust Standard Errors）。对用户级分流尤其关键！</p>
+</section>
+<section id="贝叶斯ab测试bayesian-ab-testing" class="level3" data-number="4.4.10">
+<h3 data-number="4.4.10" class="anchored" data-anchor-id="贝叶斯ab测试bayesian-ab-testing"><span class="header-section-number">4.4.10</span> 贝叶斯AB测试（Bayesian AB Testing）</h3>
+<p>待补充</p>
+</section>
+<section id="序贯检验sequential-testing" class="level3" data-number="4.4.11">
+<h3 data-number="4.4.11" class="anchored" data-anchor-id="序贯检验sequential-testing"><span class="header-section-number">4.4.11</span> 序贯检验（Sequential Testing）</h3>
+<ul>
+<li><p>允许在实验运行过程 中多次查看数据并可能提前停止实验（当结果足够显著或明显无效时）</p></li>
+<li><p>能控制整体I类错误率（如使用序贯概率比检验——SPRT，Alpha Spending Functions）</p></li>
+<li><p>提高实验效率（尤其当效应很大或很小），减少资源浪费</p></li>
+</ul>
+</section>
+<section id="abn-tesing-多臂老虎机multi-armed-bandit---mab" class="level3" data-number="4.4.12">
+<h3 data-number="4.4.12" class="anchored" data-anchor-id="abn-tesing-多臂老虎机multi-armed-bandit---mab"><span class="header-section-number">4.4.12</span> A/B/n Tesing &amp; 多臂老虎机（Multi-armed Bandit - MAB）</h3>
+<ul>
+<li><p>A/B/n：同时测试多个变体（A/B/C/D…）。需要多重检验校正</p></li>
+<li><p>MAB：一种在线学习算法，在探索（收集信息）和利用（选择当前最优）之间动态平衡流量分配。适用于需要持续优化且快速反馈的场景（如广告竞价）。牺牲严格的因果推断换取更快的收益提升。</p></li>
+</ul>
 
 
 </section>
