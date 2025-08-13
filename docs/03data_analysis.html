@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.30">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>2&nbsp; Data-Analysis – Data</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02ABTest.html" rel="next">
+<link href="./01metrics.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-de070a7b0ab54f8780927367ac907214.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03data_analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Data</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">前言</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01metrics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">行业指标梳理</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03data_analysis.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02ABTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ABTest</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="2">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#概览" id="toc-概览" class="nav-link active" data-scroll-target="#概览"><span class="header-section-number">2.1</span> 概览</a></li>
+  <li><a href="#本章参考资料" id="toc-本章参考资料" class="nav-link" data-scroll-target="#本章参考资料"><span class="header-section-number">2.2</span> <strong>本章参考资料</strong></a></li>
+  <li><a href="#核心数据分析方法" id="toc-核心数据分析方法" class="nav-link" data-scroll-target="#核心数据分析方法"><span class="header-section-number">2.3</span> 核心数据分析方法</a>
+  <ul>
+  <li><a href="#描述性分析发生了什么" id="toc-描述性分析发生了什么" class="nav-link" data-scroll-target="#描述性分析发生了什么"><span class="header-section-number">2.3.1</span> 描述性分析：发生了什么？</a></li>
+  <li><a href="#诊断性分析为什么会发生" id="toc-诊断性分析为什么会发生" class="nav-link" data-scroll-target="#诊断性分析为什么会发生"><span class="header-section-number">2.3.2</span> 诊断性分析：为什么会发生？</a></li>
+  <li><a href="#预测性分析未来有可能会发生什么" id="toc-预测性分析未来有可能会发生什么" class="nav-link" data-scroll-target="#预测性分析未来有可能会发生什么"><span class="header-section-number">2.3.3</span> 预测性分析：未来有可能会发生什么？</a></li>
+  <li><a href="#规范性分析应该怎么做" id="toc-规范性分析应该怎么做" class="nav-link" data-scroll-target="#规范性分析应该怎么做"><span class="header-section-number">2.3.4</span> 规范性分析：应该怎么做？</a></li>
+  </ul></li>
+  <li><a href="#业务中指标分析的核心方法" id="toc-业务中指标分析的核心方法" class="nav-link" data-scroll-target="#业务中指标分析的核心方法"><span class="header-section-number">2.4</span> <strong>业务中指标分析的核心方法</strong></a>
+  <ul>
+  <li><a href="#指标体系的层级" id="toc-指标体系的层级" class="nav-link" data-scroll-target="#指标体系的层级"><span class="header-section-number">2.4.1</span> 指标体系的层级</a></li>
+  <li><a href="#关键指标分析方法" id="toc-关键指标分析方法" class="nav-link" data-scroll-target="#关键指标分析方法"><span class="header-section-number">2.4.2</span> 关键指标分析方法</a></li>
+  </ul></li>
+  <li><a href="#case" id="toc-case" class="nav-link" data-scroll-target="#case"><span class="header-section-number">2.5</span> CASE</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="概览" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="概览"><span class="header-section-number">2.1</span> 概览</h2>
+<p>  数据分析的本质，在于通过系统性方法解构量化世界，驱动明智决策。其核心流程涵盖目标定义、数据获取、清洗处理、深度分析、可视化呈现与洞见传达。分析方法体系包含四大支柱：描述性分析（揭示“发生了什么”，聚焦核心业务指标的度量与监控）、诊断性分析（探究“为何发生”，运用细分、对比、漏斗、归因剖析指标异动）、预测性分析（预判“未来趋势”，基于统计与模型进行关键指标预测）、规范性分析（指导“如何行动”，提供优化决策建议）。贯穿始终的核心，是对业务指标的深刻理解、精准定义、多维度拆解（MECE原则）、归因追溯与健康度评估——正是这种围绕指标的解码能力，将数据转化为驱动业务增长的导航仪。</p>
+<p>  数据分析过程中常见的tradeoff（效率与规模的互斥性）：</p>
+<ul>
+<li><p>收益ROI = LT × ARPU / CPA</p>
+<ul>
+<li><p>LT（用户生命周期）：用户留存时长</p></li>
+<li><p>ARPU（单用户平均收入）</p></li>
+<li><p>CPA（获客成本）</p></li>
+<li><p>本质：衡量单用户的价值回报效率。</p></li>
+</ul></li>
+<li><p>规模DAU = DNU × LT + RDAU</p>
+<ul>
+<li><p>DNU（当日新增用户）</p></li>
+<li><p>RDAU（留存活跃用户）</p></li>
+<li><p>本质：反映用户池的规模稳定性（新增驱动短期爆发，留存决定长期稳态）</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="本章参考资料" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="本章参考资料"><span class="header-section-number">2.2</span> <strong>本章参考资料</strong></h2>
+<p><a href="https://developer.aliyun.com/article/880392">指标拆解</a>，<a href="">分析方法</a></p>
+</section>
+<section id="核心数据分析方法" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="核心数据分析方法"><span class="header-section-number">2.3</span> 核心数据分析方法</h2>
+<ul>
+<li>按分析目标与数据特性划分</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[数据分析方法] --&gt; B[描述性分析]
+    A --&gt; C[诊断性分析]
+    A --&gt; D[预测性分析]
+    A --&gt; E[规范性分析]
+    
+    B --&gt; B1[指标计算]
+    B --&gt; B2[数据分布]
+    B --&gt; B3[趋势分析]
+    
+    C --&gt; C1[维度下钻]
+    C --&gt; C2[异常检测]
+    C --&gt; C3[根因分析]
+    
+    D --&gt; D1[机器学习预测]
+    D --&gt; D2[时间序列预测]
+    D --&gt; D3[因果推断]
+    
+    E --&gt; E1[优化算法]
+    E --&gt; E2[决策树]
+    E --&gt; E3[仿真模拟]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>按技术复杂度分层</li>
+</ul>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">层级</th>
+<th style="text-align: left;">方法类别</th>
+<th style="text-align: left;">典型技术</th>
+<th style="text-align: left;">AB测试应用</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">基础层</td>
+<td style="text-align: left;">统计分析</td>
+<td style="text-align: left;">描述统计、假设检验、置信区间</td>
+<td style="text-align: left;">实验效果评估</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">中级层</td>
+<td style="text-align: left;">多变量分析</td>
+<td style="text-align: left;">回归分析、ANOVA、因子分析</td>
+<td style="text-align: left;">多变量实验设计</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">高级层</td>
+<td style="text-align: left;">机器学习</td>
+<td style="text-align: left;">聚类、分类、深度学习</td>
+<td style="text-align: left;">用户分群与预测</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">战略层</td>
+<td style="text-align: left;">因果推断</td>
+<td style="text-align: left;">倾向得分匹配、双重差分</td>
+<td style="text-align: left;">长期效果评估</td>
+</tr>
+</tbody>
+</table>
+<section id="描述性分析发生了什么" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="描述性分析发生了什么"><span class="header-section-number">2.3.1</span> 描述性分析：发生了什么？</h3>
+<ul>
+<li><p>目的：总结历史数据，描述现状</p></li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><p>指标计算：计算核心业务指标（DAU/WAU/MAU/GMV/APRU/CAC/LTV/转化率/留存率/跳出率）</p></li>
+<li><p>数据聚合：按时间（日/周/年）、地区、用户群、产品类别等维度汇总数据（SUM/AVG/COUNT/MAX/MIN）</p></li>
+<li><p>查看数据分布：了解数据的集中趋势（均值、中位数、众数）和离散程度（标准差、方差、四分位距）</p></li>
+<li><p>可视化：柱状图、饼图、折线图、散点图、直方图、箱线图</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="诊断性分析为什么会发生" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="诊断性分析为什么会发生"><span class="header-section-number">2.3.2</span> 诊断性分析：为什么会发生？</h3>
+<ul>
+<li><p>目的：探究现象背后的原因，找出问题的根源或成功的关键因素</p></li>
+<li><p><strong>常用方法</strong>：</p>
+<ul>
+<li><p>细分：将整体数据拆分到更细的维度（用户分群、渠道细分、产品功能细分），找出差异点和关键驱动因素</p></li>
+<li><p>对比分析：</p>
+<ul>
+<li><p>时间对比：同比、环比、特定时间对比</p></li>
+<li><p>群体对比：A/B测试、实验组VS对照组、不同用户群体（新/老、不同等级用户）、不同渠道、不同产品版本</p></li>
+<li><p>目标对比：实际值VS预算/目标值/行业基准</p></li>
+</ul></li>
+<li><p><strong>漏斗分析</strong></p>
+<ul>
+<li><p>目的：追踪用户在完成一个多步骤流程（如注册、下单、支付）中的转化和流失情况</p></li>
+<li><p>核心：识别转化瓶颈、优化关键步骤</p></li>
+<li><p>业务应用：优化用户旅程、提升转化率（注册购买、购买转化、转化激活）</p></li>
+</ul></li>
+<li><p>相关性分析：</p>
+<ul>
+<li><p>目的：探索两个或多个变量之间时是否存在关联关系（non-causal）</p></li>
+<li><p>方法：计算相关系数、scatter观察</p></li>
+<li><p>注意相关性并不等于causal！需要结合业务逻辑进行判断</p></li>
+</ul></li>
+<li><p><strong>归因分析</strong></p>
+<ul>
+<li><p>目的：确定用户转化行为（注册、购买）应归功于哪些营销渠道或触点</p></li>
+<li><p>模型：首次点击、末次点击、线性归因、时间衰减归因、基于位置的归因等等。取决于业务逻辑。</p></li>
+</ul></li>
+<li><p>根本原因分析： 使用5why、鱼骨图等工具深入挖掘问题根源</p></li>
+</ul></li>
+<li><p>业务应用：分析业绩波动原因、理解用户流失根源、评估营销活动效果、优化产品功能</p></li>
+</ul>
+</section>
+<section id="预测性分析未来有可能会发生什么" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="预测性分析未来有可能会发生什么"><span class="header-section-number">2.3.3</span> 预测性分析：未来有可能会发生什么？</h3>
+<ul>
+<li><p>目的：基于当前现有的数据利用统计/机器学习模型预测未来趋势或者结果</p></li>
+<li><p><strong>常用方法</strong></p>
+<ul>
+<li><p>时间序列分析：分析数据随时间变化的模式（趋势、季节性、周期性），用于预测（如销量预测、流量预测）。常用模型：移动平均、指数平滑、ARIMA。</p></li>
+<li><p>回归分析：</p>
+<ul>
+<li><p>目的：建立解释自变量和因变量之间的定量关系模型，用于预测和解释影响</p></li>
+<li><p>类型：线性回归、逻辑回归（预测概率/分类）、多元回归</p></li>
+<li><p>业务应用：预测销售额（基于广告投入、市场活动等）、预测用户流失概率、识别关键驱动因素（哪些因素对目标的影响最大）</p></li>
+</ul></li>
+<li><p>分类与聚类：</p>
+<ul>
+<li><p>分类：预测离散结果（如用户是否会流失？邮件是否是垃圾邮件？）常用算法：逻辑回归、决策树、随机森林、SVM、LSTM</p></li>
+<li><p>聚类：将相似是数据点分组（无监督学习），用于用户分群、市场细分、异常检测。常用算法：K-means、层次聚类</p></li>
+</ul></li>
+<li><p>预测模型评估指标：准确率、精确率、召回率、F1Score、AUC、RMSE</p></li>
+</ul></li>
+<li><p>业务应用：销售预测、需求预测、用户流失预警、风险评估（信用评分）、个性化推荐（基于预测偏好）</p></li>
+</ul>
+</section>
+<section id="规范性分析应该怎么做" class="level3" data-number="2.3.4">
+<h3 data-number="2.3.4" class="anchored" data-anchor-id="规范性分析应该怎么做"><span class="header-section-number">2.3.4</span> 规范性分析：应该怎么做？</h3>
+<ul>
+<li><p>目的：基于预测结果，提供最优行动建议。这是分析的终极目标。</p></li>
+<li><p>常用方法：</p>
+<ul>
+<li><p>优化算法：在给定约束条件下（如预算、资源）、寻找最大化（如利润、转化）或最小化（如成本、风险）目标函数的最佳方案（如线性规划、整数规划）。</p></li>
+<li><p>模拟：构建模型模拟不同决策方案下的可能结果（如蒙特卡洛模拟）</p></li>
+<li><p>决策树/推荐系统：直接给出基于规则或模型的行动建议</p></li>
+</ul></li>
+<li><p>业务应用：最佳定价策略、营销预算分配、库存优化、供应链管理、个性化最佳行动建议</p></li>
+</ul>
+</section>
+</section>
+<section id="业务中指标分析的核心方法" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="业务中指标分析的核心方法"><span class="header-section-number">2.4</span> <strong>业务中指标分析的核心方法</strong></h2>
+<p>  当一个指标波动时，我们首先需要从业务视角判断其波动是否异常，即异动检测，其次判断异常背后的原因是什么，即异动归因。</p>
+<section id="指标体系的层级" class="level3" data-number="2.4.1">
+<h3 data-number="2.4.1" class="anchored" data-anchor-id="指标体系的层级"><span class="header-section-number">2.4.1</span> 指标体系的层级</h3>
+<ul>
+<li><p>北极星指标：公司/产品最核心的单一指标，体现核心价值（如社交软件的日活、电商的GMV）</p></li>
+<li><p>一级指标（核心KPI）：支撑一级指标的更具体指标（如DAU、转化率、平均订单价值、用户留存率）</p></li>
+<li><p>二级指标：支撑一级指标的更具体指标（如注册转化率、购物车转化率、支付成功率、次日留存率）</p></li>
+<li><p>三级指标/过程指标：更细粒度的操作指标，影响二级指标（如页面加载时间、按钮点击率、客服响应时长）</p></li>
+</ul>
+</section>
+<section id="关键指标分析方法" class="level3" data-number="2.4.2">
+<h3 data-number="2.4.2" class="anchored" data-anchor-id="关键指标分析方法"><span class="header-section-number">2.4.2</span> 关键指标分析方法</h3>
+<ul>
+<li><p>指标定义与计算口径：</p>
+<ul>
+<li><p>核心：明确指标的明确定义和一致的计算逻辑（公式、数据源、时间范围、排除规则）</p></li>
+<li><p>常见公式（待补充）</p></li>
+</ul></li>
+<li><p>指标监控与追踪：</p>
+<ul>
+<li><p>仪表盘：建立核心指标的可视化仪表盘、定时/定期监控</p></li>
+<li><p>时间序列分析：绘制指标趋势图（日/周/年），识别异常波动、周期性、趋势性</p></li>
+</ul></li>
+<li><p><strong>指标归因</strong></p>
+<ul>
+<li><p>贡献度分析：确定不同因素（如渠道、活动、产品功能）对整体指标变化的贡献大小</p></li>
+<li><p>增量分析：评估某个特定动作（如上线新功能、开展营销活动）带来的指标净增量（通过AB实验实现）</p></li>
+</ul></li>
+<li><p>指标健康度评估</p>
+<ul>
+<li><p>目标对比：实际值VS目标值/预算值</p></li>
+<li><p>基准对比：与历史同期对比（同比）、上期（环比）、行业平均水平或优秀竞争对手对比</p></li>
+<li><p>合理性判断：基于业务常识判断指标值是否合理（如转化率不可能超过100%）</p></li>
+</ul></li>
+<li><p>算法归因 均待补充</p>
+<ul>
+<li><p>Adtributor：</p></li>
+<li><p>决策树：</p></li>
+</ul></li>
+<li><p>内外部分析：</p>
+<ul>
+<li>企业内部：分为获客（渠道质量低、活动获取非目标用户）、满足需求（新功能改动引发某类用户不满）、提活手段（签到等提活手段没达成目标、产品自然使用周期低导致上次获得的大量用户流失）</li>
+</ul></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph TD
+    A[提活手段ROI下降] --&gt; B{原因分类}
+    B --&gt; B1[激励不足]
+    B --&gt; B2[触达低效]
+    B --&gt; B3[用户生命周期衰竭]
+    B1 --&gt;|签到奖励价值＜用户时间成本| C1[奖励金额需提升2倍]
+    B2 --&gt;|Push打开率＜5%| C2[优化推送时段+文案个性化]
+    B3 --&gt;|次月留存率＜10%| C3[重建用户成长体系]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<pre><code>-   企业外部：PEST宏观经济环境分析</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 宏观经济指标与业务表现的回归分析示例</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 数据准备（月度维度）</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'失业率'</span>: [<span class="fl">3.5</span>, <span class="fl">4.0</span>, <span class="fl">4.5</span>, <span class="fl">5.0</span>],  <span class="co"># 自变量X</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'GMV'</span>: [<span class="dv">500</span>, <span class="dv">480</span>, <span class="dv">450</span>, <span class="dv">420</span>]      <span class="co"># 因变量Y</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 建立线性回归模型</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(df[<span class="st">'失业率'</span>])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.OLS(df[<span class="st">'GMV'</span>], X).fit()</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.summary())  <span class="co"># 查看失业率对GMV的影响系数及显著性</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>  输出结论：若失业率每上升1%，GMV下降约60万（p&lt;0.05），需调整产品策略（如增加平价SKU）。</p>
+<pre><code>-   1. **发现问题**：Q3客单价同比下降15%  
+
+-   2. **PEST归因**：  
+
+    -   经济(E)：CPI上涨导致消费降级
+    
+    -   社会(S)：小红书"平替"内容阅读量↑200%  
+    
+-   3. **内部验证**： 
+
+    -   高价商品转化率↓（-25%） 
+    
+    -   "性价比"搜索词占比↑（+40%）  
+    
+-   4. **决策建议**：  
+
+     -  上线"平价专区"，价格带下移20%  
+     
+     -  与KOL合作推广"大牌平替"内容  </code></pre>
+<ul>
+<li><p><strong>指标联动分析</strong></p>
+<ul>
+<li><p>平衡计分卡思想：理解不同指标之间的相互关系和平衡关系（如追求短期GMV增长可能牺牲利润或用户体验）</p></li>
+<li><p>相关性与因果探索：分析核心指标与其他指标的相关性（如用户活跃度与留存率、客单价与购买频次），并探索是否causal</p></li>
+</ul></li>
+</ul>
+<p><strong>指标拆解</strong></p>
+<p>  将目标指标定义为<span class="math inline">\(Y\)</span>，波动为<span class="math inline">\(\Delta Y \% = \frac{Y^1-Y^0}{Y^0}\)</span>，其中<span class="math inline">\(Y^1\)</span>是当月的数据，<span class="math inline">\(Y^0\)</span>为上个月（同比/环比）的数据。我们需要研究组成<span class="math inline">\(Y\)</span>的集合{<span class="math inline">\(X\)</span>}对于 <span class="math inline">\(\Delta Y\)</span>的贡献：<span class="math inline">\(\Delta Y \% = C_{X_1} +C_{X_2}+C_{X_3}+...\)</span>，其中<span class="math inline">\(C_{X_i}\)</span>表示指标（或维度）对于<span class="math inline">\(\Delta Y \%\)</span>的贡献度（Contribution）。</p>
+<p>  另外，<strong>贡献的拆解</strong>算法是根据组合的不同方式来决定的，集合{<span class="math inline">\(X\)</span>}组成<span class="math inline">\(Y\)</span>的方式包括：</p>
+<ul>
+<li><p>加法<span class="math inline">\(Y = X_1+X_2+X_3\)</span>（例如各渠道uv加和）</p></li>
+<li><p>乘法<span class="math inline">\(Y=X_1 \cdot X_2 \cdot X_3\)</span>（例如已知rpm（每千次展示收入） = cpc（单次点击成本）*ctr（点击率）下，算出cpc、ctr分别对rpm的贡献）</p></li>
+<li><p>比率型指标<span class="math inline">\(Y = \frac{P}{S}=\frac{\sum p_{X_i}}{s_{X_i}}\)</span>（例如各广告计划的cpf（Cost Per Follower 每获得一个新粉丝的成本）或者各个渠道的cpuv（Cost Per Unique Visitor，单个唯一访问用户成本））</p></li>
+<li><p>MECE原则：相互独立，完全穷尽。将复杂指标拆成多个相互独立且穷尽的子指标</p></li>
+</ul>
+<p>  下面我们要介绍<strong>贡献率的拆解方法</strong>：</p>
+<ul>
+<li><strong>加法拆解</strong>：</li>
+</ul>
+<p>  已知<span class="math inline">\(Y=\sum_i X_i\)</span>，目标波动<span class="math inline">\(\Delta Y\% = \frac{Y_1-Y_0}{Y_0} = \frac{\sum_i X_i^1 - \sum_i X_i^0}{Y^0} = \frac{\sum_i(X_i^1-X_i^0)}{Y^0} =\frac{\sum_i\Delta X_i}{Y^0}\)</span>，由于贡献等于<span class="math inline">\(C_{X_i} = \frac{X_i^1-X_i^0}{Y^0}=\frac{\Delta X}{Y^0}\)</span>，因此我们得到<span class="math inline">\(\Delta Y\% = \sum C_{X_i}\)</span></p>
+<p>  针对绝对值指标的维度拆解都是加法拆解。绝对量指标的同比/环比变化，就是各个分指标变化的加权求和，例如访问uv总和等于各渠道uv加总，那么总uv的变化下钻贡献率等于各渠道分别的变化除上月的总uv数。</p>
+<ul>
+<li><strong>乘法拆解</strong>：</li>
+</ul>
+<p>  已知<span class="math inline">\(Y = \prod_i X_i\)</span>，目标波动<span class="math inline">\(\Delta Y\% = \frac{Y^1-Y^0}{Y^0}\)</span>，贡献等于<span class="math inline">\(C_{X_i} = \frac{L(Y^1,Y^0)\cdot ln(\frac{X^1}{X^0})}{Y^0}\)</span>，其中<span class="math inline">\(X^1\)</span>是当月的数据，<span class="math inline">\(X^0\)</span>为上个月（同比/环比）的数据，<span class="math inline">\(L(Y^1,Y^0)\)</span>为平均对数权重，<span class="math inline">\(L(Y^1,Y^0)=\frac{Y^1-Y^0}{ln(Y^1)-ln(Y^0)}=\frac{\Delta Y}{ln(Y^1)-ln(Y^0)}\)</span></p>
+<p>  举例<strong>漏斗拆解</strong>：借助用户动线，拆解指标。</p>
+<p>  以全站商品详情页的浏览量ipv为例，其变动涉及流量、承接页到商品详情页的转化(uv-d转化)、商品 详情页用户人均浏览量（人均pv），分别对应了用户增长、搜推场景承接以及私域用户活跃度等业务域或用户行为指标。借此对全站ipv的构成链路进行静态乘法拆解 <span class="math display">\[IPV = \underbrace{\text{UV}}_{\text{流量规模}} \times \underbrace{\left(\frac{\text{进入详情页UV}}{\text{总UV}}\right)}_{\text{UV→D转化率}} \times \underbrace{\left(\frac{\text{IPV}}{\text{进入详情页UV}}\right)}_{\text{人均PV}}\]</span></p>
+<p>  同时，我们可以计算各乘积因子对目标指标变化的贡献率<span class="math inline">\(C_i\)</span>，衡量三个指标的重要性：</p>
+<p><span class="math display">\[C_{uv} = L(ipv^1, ipv^0) \cdot \ln \left(\frac{uv^1}{uv^0}\right)\]</span><br>
+<span class="math display">\[C_{uv-d \text{ rate}} = L(ipv^1, ipv^0) \cdot \ln \left(\frac{uv-d \text{ rate}^1}{uv-d \text{ rate}^0}\right)\]</span><br>
+<span class="math display">\[C_{ipv \text{ per } duv} = L(ipv^1, ipv^0) \cdot \ln \left(\frac{ipv \text{ per } duv^1}{ipv \text{ per } duv^0}\right)\]</span></p>
+<ul>
+<li><strong>比率型指标拆解</strong></li>
+</ul>
+<p>  已知<span class="math inline">\(Y = \frac{S}{P} = \frac{\sum_i s_i x_i}{\sum_i p_i x_i}, \quad P_i = \frac{p_i x_i}{\sum_i p_i x_i}, \quad S_i = \frac{s_i x_i}{\sum_i s_i x_i}, \quad Y_i = \frac{s_i}{p_i}\)</span>，当分析比率指标进行维度下钻，分项对整体的贡献，受两个因素的影响：</p>
+<p>  一是分项的相对数指标波动贡献，即当期与基期的分项规模一致时，分项指标带来的变化：分项的指标波动贡献<span class="math inline">\(A_{X_i}\)</span>=指标的同比变化值*上期基数占比，即<span class="math inline">\(A_{X_i} = (Y_i^1 - Y_i^0) \times P_i^0\)</span></p>
+<p>  二是分项的结构变化，即当期与基期分项规模变化部分的指标变化：分项的结构变化<span class="math inline">\(B_{X_i}\)</span>=占比同比变化值*（分项本期指标-整体上期指标），即<span class="math inline">\(B_{X_i} = (P_i^1 - P_i^0) \times (Y_i^1 - Y^0)\)</span></p>
+<p>  最后<span class="math inline">\(C_{X_i} = \frac{A_{X_i}+B_{X_i}}{Y^0}\)</span></p>
+<p>  举例：以承接页到商品详情页的转化率为例（uv-drate），<span class="math inline">\(rate = \frac{duv}{uv}\)</span>，流量渠道可以分为付费、免费、自然、其他，每种渠道的uv-d转化率为<span class="math inline">\(rate_i = \frac{duv_i}{uv_i}\)</span>，各渠道的商详页访问人数(duv)占比用<span class="math inline">\(DUV_i = \frac{duv_i}{duv}\)</span>来表示，各渠道人数（uv）占比用<span class="math inline">\(UV_i = \frac{uv_i}{uv}\)</span>;如果uv-d转化率同比下跌，我们想定位出哪个渠道出现了问题,各渠道的贡献<span class="math inline">\(C_i\)</span>将如下计算： <span class="math display">\[
+A_i = (rate_i^1 - rate_i^0) \cdot uv_i^0 = \Delta rate_i \cdot uv_i^0
+\]</span> <span class="math display">\[
+B_i = (uv_i^1 - uv_i^0) \cdot (rate_i^1 - rate_i^0) = \Delta uv_i \cdot (rate_i^1 - rate_i^0)
+\]</span> <span class="math display">\[
+C_i = \frac{A_i + B_i}{rate_i^0}
+\]</span></p>
+<ul>
+<li><strong>实例应用</strong></li>
+</ul>
+<p>  根据上文提到的不同指标的计算方法，支持全类型指标下钻求贡献的场景，可根据先验业务输入搭建多层的归因逻辑模型，层层下钻，最终将指标波动定位。 <img src="img/Cartesian.png" alt="笛卡尔积汇总示意图" width="600"></p>
+<p>  以某日ipv同比下跌的异动分析为例：</p>
+<p>  <strong>第一层拆解</strong>，借助用户动线，将存在异动变化的指标ipv构成链路进行乘法拆解，如下：   <span class="math display">\[IPV = \underbrace{\text{UV}}_{\text{流量规模}} \times \underbrace{\left(\frac{\text{进入详情页UV}}{\text{总UV}}\right)}_{\text{UV→D转化率}} \times \underbrace{\left(\frac{\text{IPV}}{\text{进入详情页UV}}\right)}_{\text{人均PV}}\]</span>   这里帮助我们定位到可能导致指标异动的关键节点：是uv的问题？转化的问题？还是人均ipv的问题？</p>
+<p>  <strong>第二层拆解</strong>，对关键节点处的多个维度进行下钻，将问题定位到某些维度的某些水平上，同时避免陷入辛普森悖论等陷阱。例如如果是转化的问题，究竟是哪个渠道的转化少了？</p>
+<p>  下图是“异动分析拆解流程图”，是根据先验的业务输入搭建的归因模型，根据其框架得以进行贡献率拆解与问题定位：</p>
+<p><img src="img/metrics.png" alt="异动分析拆解流程" width="800"></p>
+<p>  假设红色表示的链路指标或维度代表对总之下跌贡献率较大，经过一层一层的拆解定位到app端自然流量中转化的降低导致总转化下降。</p>
+<p>  基于流量跨端调控以及流量预算减投的业务背景，我们现将 对ipv贡献最大的nv/duv根据端型、流量渠道类型、流量渠道、国家四个维度进行贡献率拆解。</p>
+<p>  在本实例中，通过本文对贡献率拆解方法与业务人工看数得到的问题定位基本一致，该方法可以实现异动贡献率量化与提效的目的，具体核心结论如下：</p>
+<ul>
+<li><p>结论一（第一层拆解）：ipv下降主要影响因素是uv-d转化率的波动</p></li>
+<li><p>结论二（第二层拆解）：uv-d比率的波动主要由APP端和WAP端导致，两种端型贡献持平</p></li>
+<li><p>结论三（第3/4层拆解）：APP端的自然流量和WAP端的付费流量是uv-d波动的主要贡献维度</p></li>
+<li><p>结论四（第五层拆解）：APP端Self-visit中美国对uv-d比率的波动贡献较大</p></li>
+</ul>
+<p>  通过建立多层归因下钻维度模型，用自动化的方式层层剥析，从而能全面准确地归因到某个维度。</p>
+<ul>
+<li>维度拆解：按用户属性（新/老、地域、渠道来源）、产品属性（品类、价格段）、时间（小时、日、周）等维度拆解指标，寻找差异</li>
+</ul>
+</section>
+</section>
+<section id="case" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="case"><span class="header-section-number">2.5</span> CASE</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：现在有一个游戏测试的环节，游戏测试结束后需要根据数据提交一份slides，如何安排PPT？包括什么内容？</p>
+<p>A:AARRR模型</p>
+<ul>
+<li><p>Acquistion获取用户：我们的用户群体是谁？用户规模多大？</p></li>
+<li><p>Activation激活：游戏是否吸引玩家？什么渠道获取的用户有质量（根据次日留存率、首日停留时长等）</p></li>
+<li><p>Retention留存：用户能否持续留存？哪些用户可以留存</p></li>
+<li><p>Revenue转化：用户游戏行为能否进行转化？能否持续转化？</p></li>
+<li><p>Refer自传播：用户是否会向他人推荐游戏？如何激励用户向他人推荐？K因子是否大于1？</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：某业务部门在上周结束了为期一周的大促，作为业务对口分析师，需要你对活动进行一次评估，你会从哪些方面进行分析？</p>
+<p>A：</p>
+<ul>
+<li><p>目的：确定大促目的是什么。拉新？促活？清库存？</p></li>
+<li><p>搭建指标体系：根据目的搭建</p></li>
+<li><p>效果评估：</p>
+<ul>
+<li><p>自身比较：活动前与活动中比较</p></li>
+<li><p>与预定目标比较</p></li>
+<li><p>与同期其他活动比较</p></li>
+<li><p>与往期同类活动比较</p></li>
+</ul></li>
+<li><p>持续监控：</p>
+<ul>
+<li><p>检查活动后情况，避免透支消费的情况</p></li>
+<li><p>如果是拉新活动，根据后续数据检验新客质量</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：次日用户留存率下降了5%怎么分析？</p>
+<p>A：</p>
+<ul>
+<li><p>两层模型：对用户进行细分，包括新老、渠道、活动、画像等多个维度，然后分别计算每个维度下不同用户的次日留存率。通过这种方法定位到导致留存率下降的用户群体</p></li>
+<li><p>内外部：</p>
+<ul>
+<li>内部：</li>
+</ul></li>
+</ul>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./01metrics.html" class="pagination-link" aria-label="行业指标梳理">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">行业指标梳理</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02ABTest.html" class="pagination-link" aria-label="ABTest">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">ABTest</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
