@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Data-Analysis – Data</title>
+<title>2&nbsp; 数据分析方法 – Data</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -149,7 +149,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03data_analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./03data_analysis.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据分析方法</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +189,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./03data_analysis.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据分析方法</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -229,6 +229,11 @@ window.Quarto = {
   <li><a href="#关键指标分析方法" id="toc-关键指标分析方法" class="nav-link" data-scroll-target="#关键指标分析方法"><span class="header-section-number">2.4.2</span> 关键指标分析方法</a></li>
   </ul></li>
   <li><a href="#case" id="toc-case" class="nav-link" data-scroll-target="#case"><span class="header-section-number">2.5</span> CASE</a></li>
+  <li><a href="#费米问题" id="toc-费米问题" class="nav-link" data-scroll-target="#费米问题"><span class="header-section-number">2.6</span> 费米问题</a>
+  <ul>
+  <li><a href="#互联网场景应用案例外卖平台每日需要多少骑手" id="toc-互联网场景应用案例外卖平台每日需要多少骑手" class="nav-link" data-scroll-target="#互联网场景应用案例外卖平台每日需要多少骑手"><span class="header-section-number">2.6.1</span> 互联网场景应用案例——外卖平台每日需要多少骑手？</a></li>
+  <li><a href="#在异动分析中的应用dau突然下跌30" id="toc-在异动分析中的应用dau突然下跌30" class="nav-link" data-scroll-target="#在异动分析中的应用dau突然下跌30"><span class="header-section-number">2.6.2</span> 在异动分析中的应用——DAU突然下跌30%</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -237,7 +242,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data-Analysis</span></h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">数据分析方法</span></h1>
 </div>
 
 
@@ -678,15 +683,341 @@ Note
 <p>A：</p>
 <ul>
 <li><p>两层模型：对用户进行细分，包括新老、渠道、活动、画像等多个维度，然后分别计算每个维度下不同用户的次日留存率。通过这种方法定位到导致留存率下降的用户群体</p></li>
-<li><p>内外部：</p>
+<li><p>内外部分析</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：一个网站销售额变低，你要从哪几方面去考量呢？</p>
+<p>A：</p>
 <ul>
-<li>内部：</li>
+<li><p>首先定位到位置：</p>
+<ul>
+<li><p>用户（画像、来源渠道、新老、地区等）</p></li>
+<li><p>产品或栏目</p></li>
+<li><p>访问时段</p></li>
+</ul></li>
+<li><p>定位到位置后，进行问题拆解，关注目标群体中哪个指标下降导致网站销售额下降：</p>
+<ul>
+<li><p>销售额 = 入站流量<em>下单率</em>客单价</p></li>
+<li><p>入站流量 = <span class="math inline">\(\sum\)</span>各来源流量*转化率</p></li>
+<li><p>下单率 = 页面访问量*转化率</p></li>
+<li><p>客单价 = 商品手术量*商品价格</p></li>
+</ul></li>
+<li><p>确定源头后，进行分析</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：用户流失的分析</p>
+<p>A：</p>
+<ul>
+<li><p>两层模型：</p>
+<ul>
+<li><p>细分用户、产品、渠道，看到底是哪里用户流失了。注意由于是用户流失问题，所以这里细分用户时可以细分用户处在生命周期的哪个阶段</p></li>
+<li><p>指标拆解：用户流失数量 = <span class="math inline">\(\sum\)</span>各群体用户数量*流失率。拆解，看是因为到了这个阶段的用户数量多了（比如大部分用户到了衰退期），还是这个用户群体的流失率比较高</p></li>
+</ul></li>
+<li><p>内外部分析：</p>
+<ul>
+<li><p>内部：新手上手难度大、收费不合理、产品服务出现重大问题、活动质量低、缺少留存手段、用户参与度低等等</p></li>
+<li><p>外部：市场、竞争对手、社会环境、节假日等</p></li>
 </ul></li>
 </ul>
 </div>
 </div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：新老用户流失有什么不同：</p>
+<p>A：</p>
+<ul>
+<li><p>新用户</p>
+<ul>
+<li><p>原因可能是非目标用户（刚性流失）、产品不满足需求（自然流失）、产品难以上手（受挫流失）和竞争产品影响（市场流失）</p></li>
+<li><p>我们要考虑如何在较少的数据支撑下做流失 用户识别，提前防止用户流失，并如何对有效的新用户进行挽回</p></li>
+</ul></li>
+<li><p>老用户</p>
+<ul>
+<li><p>原因可能是用户生命周期衰退期（自然流失）、过渡拉升ARPU导致低端用户驱逐（刚性流失）、社交蒸发难以满足前期用户需求（受挫流失）和竞争产品影响（市场流失）</p></li>
+<li><p>老用户有更多的数据，更容易进行流失用户识别，做好防止用户流失更重要。当用户流失之后，要考虑用户生命周期剩余价值，是否需要进行挽回。</p></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：我们有一款游戏收入下降了，你怎么分析？</p>
+<p>A：</p>
+<ul>
+<li><p>两层模型：细分用户、渠道、产品，看到底是哪里的收入下降了</p></li>
+<li><p>指标拆解：收入 = 玩家数量 * 活跃用户占比 * 付费转化率 * 付费次数 * 客单价</p></li>
+<li><p>进一步细分：玩家数量 = 老玩家数量 * 活跃度 + 新玩家数量 * 留存率，然后对各个指标与以往的数据进行对比，发现是哪些环节导致收入下降</p></li>
+<li><p>分析原因：</p>
+<ul>
+<li><p>内部：产品变化、促活活动、拉新活动、定价策略、运营策略、服务器故障等等</p></li>
+<li><p>外部：用户票号变化、市场环境变化、舆论环境变化、竞争对手行为、外部渠道变化等等</p></li>
+</ul></li>
+<li><p>怎么做：基于乘法模型，可以采用上限分析，从前往后依次将指标提升到投入足够精力（假设优先分配人力、经费与渠道）后的上限。找到数值提升最快的那个阶段，就是我们提高收入的关键任务</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Q：抖音日活下降了10%</p>
+<p>A：</p>
+<ul>
+<li>拆分维度：</li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[常见拆分维度] --&gt; B(拆用户: 新/老用户);
+    A --&gt; C(拆登录平台: ios/安卓);
+    A --&gt; D(拆版本: 新/老版本);
+    A --&gt; E(拆入口: 点击图标进入/push调起 等);
+    A --&gt; F(拆登录渠道: app/小程序/pc端/m端等);
+    A --&gt; G(拆区域: 省份、国家等);
+    A --&gt; H(拆时间: 淡旺季、日夜、产品周期性等);
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li><p>计算贡献率</p></li>
+<li><p>分析原因</p></li>
+</ul>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[内部原因] --&gt; B(产品);
+    A --&gt; C(技术);
+    A --&gt; D(运营);
+    A --&gt; E(统计口径);
+    B --&gt; B1(功能调整);
+    B --&gt; B2(策略调整);
+    B --&gt; B3(样式改版);
+    B --&gt; B4(版本缺陷);
+    C --&gt; C1(接口不稳定);
+    C --&gt; C2(系统故障);
+    C --&gt; C3(APP异常);
+    C --&gt; C4(数据传输、存储、清洗有问题);
+    D --&gt; D1(运营策略);
+    D --&gt; D2(push效果);
+    D --&gt; D3(拉新渠道);
+    D --&gt; D4(投放推广);
+    D --&gt; D5(活动);
+    E --&gt; E1(业务逻辑变更);
+    E --&gt; E2(指标计算方式变更);
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+    A[外部原因] --&gt; B(政治);
+    A --&gt; C(经济);
+    A --&gt; D(社会);
+    B --&gt; B1(政策影响、互联网金融监管);
+    C --&gt; C1(竞品APP数据);
+    D --&gt; D1(假期效应：开学季、暑假、四大节日、当地节日);
+    D --&gt; D2(热点事件：如世界杯、突发热点、爆款IP);
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
+<ul>
+<li>验证假设</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="费米问题" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="费米问题"><span class="header-section-number">2.6</span> 费米问题</h2>
+<p>  费米问题（Fermi Problem）是一种通过逻辑拆解、合理估算和数量级推理，在有限信息下快速解决复杂量化问题的方法论，由诺贝尔物理学奖得主恩里科·费米提出。</p>
+<p>  以估算芝加哥钢琴调音师数量为例：<span class="math inline">\(\text{调音师数量} = \frac{\text{年总调音需求}}{\text{单名调音师年服务能力}}\)</span>，然后逐层估算：</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">子问题</th>
+<th style="text-align: left;">估算逻辑</th>
+<th style="text-align: left;">取值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">芝加哥人口</td>
+<td style="text-align: left;">美国第三大城市</td>
+<td style="text-align: left;">300万</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">家庭平均规模</td>
+<td style="text-align: left;">典型欧美家庭</td>
+<td style="text-align: left;">3人/户</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">钢琴拥有率</td>
+<td style="text-align: left;">中产家庭约10%拥有</td>
+<td style="text-align: left;">10户有1台</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">钢琴总数</td>
+<td style="text-align: left;">=300万/3人/户 × 1/10</td>
+<td style="text-align: left;">10万台</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">年调音频次</td>
+<td style="text-align: left;">每年需调音1次</td>
+<td style="text-align: left;">1次/台·年</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">年总调音需求</td>
+<td style="text-align: left;">=10万台 × 1次/台·年</td>
+<td style="text-align: left;">10万次</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">单次调音耗时</td>
+<td style="text-align: left;">包括交通、调音</td>
+<td style="text-align: left;">2小时</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">日有效工作时长</td>
+<td style="text-align: left;">扣除交通、休息</td>
+<td style="text-align: left;">5小时/天</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">年工作日</td>
+<td style="text-align: left;">250天 (扣除假期)</td>
+<td style="text-align: left;">250天</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">单人年服务能力</td>
+<td style="text-align: left;">=5小时/天 ÷ 2小时/次 × 250天</td>
+<td style="text-align: left;">625次</td>
+</tr>
+</tbody>
+</table>
+<p>  综合计算<span class="math inline">\(\text{调音师数量} = \frac{100,000}{625} = 160人\)</span>，实际上登记调音师约200人，误差20%。</p>
+<section id="互联网场景应用案例外卖平台每日需要多少骑手" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="互联网场景应用案例外卖平台每日需要多少骑手"><span class="header-section-number">2.6.1</span> 互联网场景应用案例——外卖平台每日需要多少骑手？</h3>
+<p>  <span class="math inline">\(\text{骑手数} = \frac{\text{日订单量} × \text{单均配送时长}}{\text{骑手日均有效工时}}\)</span>，逐层估计</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">参数</th>
+<th style="text-align: left;">估算逻辑</th>
+<th style="text-align: left;">取值</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">目标城市人口</td>
+<td style="text-align: left;">一线城市</td>
+<td style="text-align: left;">2000万</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">点外卖渗透率</td>
+<td style="text-align: left;">年轻人占比×点外卖习惯</td>
+<td style="text-align: left;">20%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">人均周订单</td>
+<td style="text-align: left;">高频用户3单/周，低频1单/周</td>
+<td style="text-align: left;">1.5单/周·人</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">日订单量</td>
+<td style="text-align: left;">=2000万×20%×1.5÷7</td>
+<td style="text-align: left;">85.7万单</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">单均配送时长</td>
+<td style="text-align: left;">取餐+交通+交付</td>
+<td style="text-align: left;">30分钟</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">骑手日均有效工时</td>
+<td style="text-align: left;">10小时（含等待时间）</td>
+<td style="text-align: left;">600分钟</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">骑手日均配送单量</td>
+<td style="text-align: left;">=600÷30</td>
+<td style="text-align: left;">20单</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">所需骑手数</td>
+<td style="text-align: left;">=85.7万 ÷ 20</td>
+<td style="text-align: left;">42,850人</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="在异动分析中的应用dau突然下跌30" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="在异动分析中的应用dau突然下跌30"><span class="header-section-number">2.6.2</span> 在异动分析中的应用——DAU突然下跌30%</h3>
+<p>  <span class="math inline">\(\Delta DAU = \Delta \text{新用户} + \Delta \text{老用户留存} + \Delta \text{回流用户}\)</span></p>
+<p>  估算渠道影响：若主要渠道A占新客60%，其CPU升50%，则新客减少约30%</p>
+<p>  功能改版的影响：改版覆盖40%用户，该群日次留率降15%，则DAU降约6%</p>
+<p>  综合判断：实际跌幅为36%</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
